@@ -10,7 +10,7 @@
 I am a passionate computer science graduate from <a href="https://ewubd.edu">East West University</a>, currently working as a software engineer with a focus on Cloud and DevSecOps at <a href="https://brotecs.com">BroTecs Technologies Limited</a>. 🚀
 
 <!-- Add a toggle button for dark and light mode -->
-<button onclick="toggleDarkMode()">🌓 Toggle dark mode</button>
+<button onclick="toggleDarkMode()" class="moon-button">🌙</button>
 
 <script>
 function toggleDarkMode() {
@@ -18,18 +18,22 @@ function toggleDarkMode() {
   const isDarkMode = body.classList.toggle('dark-mode');
   localStorage.setItem('isDarkMode', isDarkMode);
 }
+// Set dark mode by default
+if (localStorage.getItem('isDarkMode') === 'true' || (!'isDarkMode' in localStorage && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.querySelector('body').classList.add('dark-mode');
+}
 </script>
 
 <style>
 :root {
-  --background-color: #ffffff;
-  --text-color: #000000;
+  --background-color: #282c35;
+  --text-color: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background-color: #282c35;
-    --text-color: #ffffff;
+    --background-color: #ffffff;
+    --text-color: #000000;
   }
 }
 
@@ -43,8 +47,23 @@ body {
   --background-color: #282c35;
   --text-color: #ffffff;
 }
-</style>
 
+/* Styles for moon button */
+.moon-button {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 24px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 999;
+}
+.moon-button:focus {
+  outline: none;
+}
+</style>
 ## 💻 Tech Stack
 
 Here are a few technologies that I have been working with recently:
