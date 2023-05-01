@@ -1,7 +1,10 @@
+<img align="right" width="200" height="200" src="https://user-images.githubusercontent.com/43757878/235487376-ce2ff787-f006-4815-a44b-2ddfbc549b15.jpg">
 
-<img align="right" width="200" height="200" src=![profile-pic](https://user-images.githubusercontent.com/43757878/235487376-ce2ff787-f006-4815-a44b-2ddfbc549b15.jpg)>
+
+
 
 # Hi there, I'm Md. Rajib Hawlader 👋
+
 
 
 I am a passionate computer science graduate from <a href="https://ewubd.edu">East West University</a>, currently working as a software engineer with a focus on Cloud and DevSecOps at <a href="https://brotecs.com">BroTecs Technologies Limited</a>. 🚀
