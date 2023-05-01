@@ -81,20 +81,3 @@ He/Him
 
 Thanks for checking out my profile. Let's connect! 😊
 
-<!-- Add a toggle button for dark and light mode -->
-<button onclick="toggleDarkMode()">🌓 Toggle dark mode</button>
-
-<script>
-function toggleDarkMode() {
-    const body = document.querySelector('body');
-    body.classList.toggle('dark-mode');
-}
-</script>
-
-<style>
-/* Define styles for dark mode */
-.dark-mode {
-    background-color: #282c35;
-    color: #fff;
-}
-</style>
