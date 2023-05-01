@@ -6,7 +6,6 @@
 # Hi there, I'm Md. Rajib Hawlader 👋
 
 
-
 I am a passionate computer science graduate from <a href="https://ewubd.edu">East West University</a>, currently working as a software engineer with a focus on Cloud and DevSecOps at <a href="https://brotecs.com">BroTecs Technologies Limited</a>. 🚀
 
 <!-- Add a toggle button for dark and light mode -->
@@ -66,6 +65,9 @@ body {
   outline: none;
 }
 </style>
+
+<br>
+<br>
 ## 💻 Tech Stack
 
 Here are a few technologies that I have been working with recently:
