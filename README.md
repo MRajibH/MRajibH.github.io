@@ -22,6 +22,8 @@ function toggleDarkMode() {
 if (localStorage.getItem('isDarkMode') === 'true' || (!'isDarkMode' in localStorage && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
   document.querySelector('body').classList.add('dark-mode');
 }
+const h1Element = document.querySelector('h1 a[href="https://rajibhawlader.me/"]').parentElement;
+h1Element.parentElement.removeChild(h1Element);
 </script>
 
 <style>
