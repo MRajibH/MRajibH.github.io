@@ -9,7 +9,7 @@ type Props = {
   stagger?: boolean;
 };
 
-export function AnimateIn({ children, className = "", delay = 0, stagger }: Props) {
+export function AnimateIn({ children, className = "", delay = 0 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -29,7 +29,7 @@ export function AnimateIn({ children, className = "", delay = 0, stagger }: Prop
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      className={`${className} transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

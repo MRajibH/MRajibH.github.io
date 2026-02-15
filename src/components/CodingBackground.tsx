@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-const PARTICLE_COUNT_BASE = 100;
 const CURSOR_RADIUS = 200;
 const REPEL_STRENGTH = 3;
 const FRICTION = 0.96;
