@@ -97,19 +97,20 @@ export const experience = [
 
 export const education = [
   {
-    date: "03/2021",
+    date: "2017-2021",
     location: "Dhaka",
     degree: "Bachelor of Science (BS) in Computer Science and Engineering",
     institution: "East West University",
     logoKey: "ewu",
+    batch: "Spring 2017",
   },
   {
-    date: "—",
+    date: "2013-2025",
     location: "Dhaka",
     degree: "HSC in Science",
     institution: "Notre Dame College",
     logoKey: "ndc",
-    batch: "2025",
+    batch: "2015",
   },
 ];
 
