@@ -54,7 +54,7 @@ export function SkillIcon({ name, className = "" }: { name: string; className?: 
   const Icon = skillIconMap[name] ?? defaultIcon;
   return (
     <span
-      className={`inline-flex items-center justify-center w-6 h-6 rounded-md bg-navy-light/60 text-accent icon-float ${className}`}
+      className={`inline-flex items-center justify-center w-6 h-6 rounded-md bg-navy-light/60 text-accent icon-float transition-all duration-300 hover:shadow-glow hover:text-white ${className}`}
       title={name}
     >
       <Icon className="w-3.5 h-3.5" />

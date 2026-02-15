@@ -2,24 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-const CODE_TOKENS = [
-  "const", "let", "=>", "()", "{}", "[]", "function", "return", "import", "export",
-  "async", "await", "</>", "<div>", "useState", "useEffect", "type", "interface",
-  "null", "true", "false", "try", "catch", "if", "else", "for", "map", "filter",
-  "reduce", "className", "href", "Promise", "React", "Next", "TypeScript", "void",
-  "string", "number", "boolean", "API", "fetch", "await", "=>", "{}", "[]",
-  "ls", "cd", "grep", "sudo", "apt", "chmod", "chown", "top", "htop", "vim",
-  "cat", "ssh", "ping", "systemctl", "rm -rf", "docker", "kubectl", "git",
-  "bash", "zsh", "alias", "tar", "unzip", "curl", "wget", "ps aux", "kill",
-];
-
-function getRandomToken() {
-  return CODE_TOKENS[Math.floor(Math.random() * CODE_TOKENS.length)];
-}
-
-const CURSOR_RADIUS = 140;
-const REPEL_STRENGTH = 160;
-const DAMPING = 0.88;
+const PARTICLE_COUNT_BASE = 100;
+const CURSOR_RADIUS = 200;
+const REPEL_STRENGTH = 3;
+const FRICTION = 0.96;
+const RETURN_SPEED = 0.008;
+const DRIFT_SPEED = 0.05; // Autonomous movement
+const CONNECTION_DISTANCE = 120; // Distance for constellation lines
 
 export function CodingBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,50 +21,63 @@ export function CodingBackground() {
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
     let width = window.innerWidth;
     let height = window.innerHeight;
     let animationId: number;
+    let particles: Particle[] = [];
+    let time = 0;
 
-    const setSize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
+    type Particle = {
+      x: number;
+      y: number;
+      originX: number;
+      originY: number;
+      vx: number;
+      vy: number;
+      size: number;
+      color: string;
+      baseAlpha: number; // For pulsing
+      pulseSpeed: number;
+    };
+
+    const initParticles = () => {
+      const dpr = Math.min(window.devicePixelRatio ?? 1, 2);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      particles = [];
+      const count = Math.max(70, Math.floor((width * height) / 12000));
+
+      for (let i = 0; i < count; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const isCyan = Math.random() > 0.8;
+        const baseAlpha = isCyan ? 0.6 : 0.25;
+        const color = isCyan ? `rgba(0, 170, 255, ${baseAlpha})` : `rgba(255, 255, 255, ${baseAlpha})`;
+
+        particles.push({
+          x,
+          y,
+          originX: x,
+          originY: y,
+          vx: 0,
+          vy: 0,
+          size: isCyan ? 1.5 + Math.random() * 1.5 : 1 + Math.random(),
+          color,
+          baseAlpha,
+          pulseSpeed: 0.02 + Math.random() * 0.03,
+        });
+      }
     };
 
-    type Particle = {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      text: string;
-      baseSpeed: number;
-      opacity: number;
-      fontSize: number;
-      drift: number;
+    const setSize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      initParticles();
     };
-
-    const particles: Particle[] = [];
-    const colCount = Math.max(10, Math.floor(width / 120));
-    const spacing = width / (colCount + 1);
-
-    for (let i = 0; i < colCount * 5; i++) {
-      particles.push({
-        x: (i % colCount) * spacing + (spacing * 0.2 + Math.random() * spacing * 0.6),
-        y: Math.random() * height,
-        vx: 0,
-        vy: 0,
-        text: getRandomToken(),
-        baseSpeed: 0.05 + Math.random() * 0.2,
-        opacity: 0.15 + Math.random() * 0.25,
-        fontSize: 12 + Math.floor(Math.random() * 10),
-        drift: (Math.random() - 0.5) * 0.03,
-      });
-    }
 
     setSize();
     window.addEventListener("resize", setSize);
@@ -90,53 +92,76 @@ export function CodingBackground() {
     window.addEventListener("mouseleave", handleMouseLeave);
 
     const draw = () => {
+      time += 1;
       ctx.clearRect(0, 0, width, height);
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
 
-      particles.forEach((p) => {
-        p.vx += p.drift;
+      // Draw Connections (Constellation Effect) behind particles
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (mx > 0 && my > 0) {
-          const dx = p.x - mx;
-          const dy = p.y - my;
-          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (dist < CURSOR_RADIUS) {
-            const force = (REPEL_STRENGTH * (1 - dist / CURSOR_RADIUS)) / dist;
-            p.vx += (dx / dist) * force;
-            p.vy += (dy / dist) * force;
+          if (dist < CONNECTION_DISTANCE) {
+            // Fade out based on distance
+            const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.15;
+            ctx.strokeStyle = `rgba(0, 170, 255, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
           }
         }
+      }
 
-        p.x += p.vx;
-        p.y -= p.baseSpeed;
-        p.y += p.vy;
-        p.vx *= DAMPING;
-        p.vy *= DAMPING;
+      particles.forEach((p, i) => {
+        // 1. Mouse Repulsion
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        const angle = Math.atan2(dy, dx);
 
-        // Reset if it goes off the top
-        if (p.y < -30) {
-          p.y = height + 30;
-          p.x = (Math.random() * colCount) * spacing + spacing * 0.2;
-          p.text = getRandomToken();
-          p.vx = 0;
-          p.vy = 0;
+        if (mx > 0 && dist < CURSOR_RADIUS) {
+          const force = (CURSOR_RADIUS - dist) / CURSOR_RADIUS;
+          const push = force * REPEL_STRENGTH;
+          p.vx += Math.cos(angle) * push;
+          p.vy += Math.sin(angle) * push;
         }
-        if (p.x < -50 || p.x > width + 50) p.drift *= -1;
 
-        const wave = 0.75 + 0.25 * Math.sin(p.y * 0.015 + p.x * 0.01);
-        ctx.globalAlpha = Math.min(1, p.opacity * wave);
-        ctx.font = `600 ${p.fontSize}px ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace`;
-        ctx.textBaseline = "middle";
-        ctx.shadowColor = "rgba(0, 170, 255, 0.5)";
-        ctx.shadowBlur = 8;
-        ctx.fillStyle = "#00aaff";
-        ctx.fillText(p.text, p.x, p.y);
-        ctx.shadowBlur = 0;
+        // 2. Autonomous Drift (Perlin-like noise using sine waves)
+        // Each particle has a unique drift pattern based on its index and time
+        const noiseX = Math.sin(time * 0.01 + i * 0.5) * DRIFT_SPEED;
+        const noiseY = Math.cos(time * 0.01 + i * 0.5) * DRIFT_SPEED;
+        p.vx += noiseX;
+        p.vy += noiseY;
+
+        // 3. Elastic Return
+        const ox = p.originX - p.x;
+        const oy = p.originY - p.y;
+        p.vx += ox * RETURN_SPEED;
+        p.vy += oy * RETURN_SPEED;
+
+        // 4. Physics Update
+        p.vx *= FRICTION;
+        p.vy *= FRICTION;
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // 5. Draw
+        // Pulsing opacity
+        const pulse = Math.sin(time * p.pulseSpeed) * 0.2;
+        const alpha = Math.max(0.1, p.baseAlpha + pulse);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        // Extract RGB from color string to apply new alpha
+        ctx.fillStyle = p.color.replace(/[\d.]+\)$/g, `${alpha})`);
+        ctx.fill();
       });
 
-      ctx.globalAlpha = 1;
-      ctx.textBaseline = "alphabetic";
       animationId = requestAnimationFrame(draw);
     };
 
@@ -152,7 +177,7 @@ export function CodingBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0"
+      className="fixed inset-0 w-full h-full pointer-events-none z-0 transition-opacity duration-1000 ease-in-out opacity-100"
       style={{ background: "transparent" }}
       aria-hidden
     />

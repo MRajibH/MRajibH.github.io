@@ -17,19 +17,38 @@ export const profiles = [
 export const summary =
   "Software engineer with a strong foundation in Python, JavaScript, and DevSecOps. Focused on building user-centric solutions and leading technical initiatives.";
 
-export const skills = {
-  left: [
-    { category: "Programming", items: ["Python", "JavaScript", "TypeScript", "Node.js"] },
-    { category: "Frameworks", items: ["React", "Next.js", "Express"] },
-    { category: "Web Development", items: ["HTML5", "CSS3", "REST APIs"] },
-    { category: "Databases", items: ["SQL", "MongoDB", "PostgreSQL"] },
-  ],
-  right: [
-    { category: "AI Integration", items: ["OpenAI APIs", "LLM integration"] },
-    { category: "Cloud & Networking", items: ["AWS", "Docker", "CI/CD"] },
-    { category: "Tools", items: ["Git/GitHub", "Jira", "Agile/Scrum"] },
-  ],
-};
+export const skills = [
+  {
+    category: "Languages",
+    description: "Core programming languages I work with daily",
+    items: ["Python", "JavaScript", "TypeScript"],
+  },
+  {
+    category: "Backend",
+    description: "Server-side frameworks and runtime environments",
+    items: ["Node.js", "Express", "REST APIs"],
+  },
+  {
+    category: "Frontend",
+    description: "Building modern, responsive user interfaces",
+    items: ["React", "Next.js", "HTML5", "CSS3"],
+  },
+  {
+    category: "Databases",
+    description: "Relational and NoSQL data storage solutions",
+    items: ["PostgreSQL", "MongoDB", "SQL"],
+  },
+  {
+    category: "AI & ML",
+    description: "Integrating intelligence into applications",
+    items: ["OpenAI APIs", "LLM integration"],
+  },
+  {
+    category: "DevOps",
+    description: "Deployment, containerization, and CI/CD pipelines",
+    items: ["AWS", "Docker", "CI/CD", "Git/GitHub"],
+  },
+];
 
 export const experience = [
   {

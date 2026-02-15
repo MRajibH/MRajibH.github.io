@@ -23,6 +23,9 @@ const config: Config = {
         glow: "0 0 20px rgba(0, 170, 255, 0.3)",
         "glow-sm": "0 0 10px rgba(0, 170, 255, 0.2)",
       },
+      backgroundSize: {
+        "300%": "300%",
+      },
     },
   },
   plugins: [],

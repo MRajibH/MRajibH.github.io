@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Rajib Hawlader | rajib.uk",
+  title: "Muhammad Rajib Hawlader | Software Engineer",
   description: "Software Engineer — Python, JavaScript, DevSecOps. Building secure, intelligent systems.",
 };
 
