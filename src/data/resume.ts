@@ -21,7 +21,7 @@ export const skills = [
   {
     category: "Languages",
     description: "Core programming languages I work with daily",
-    items: ["Python", "JavaScript", "TypeScript"],
+    items: ["Python", "JavaScript", "TypeScript", "PHP", "SQL"],
   },
   {
     category: "Backend",
@@ -31,22 +31,27 @@ export const skills = [
   {
     category: "Frontend",
     description: "Building modern, responsive user interfaces",
-    items: ["React", "Next.js", "HTML5", "CSS3"],
+    items: ["React", "Next.js", "Angular", "HTML5", "CSS3"],
   },
   {
     category: "Databases",
-    description: "Relational and NoSQL data storage solutions",
-    items: ["PostgreSQL", "MongoDB", "SQL"],
+    description: "Relational data storage solutions",
+    items: ["PostgreSQL", "MySQL"],
+  },
+  {
+    category: "Linux & OS",
+    description: "Operating systems and server administration",
+    items: ["Debian", "Rocky Linux", "CentOS", "FreeBSD"],
+  },
+  {
+    category: "DevOps & Cloud",
+    description: "Deployment, containerization, and CI/CD pipelines",
+    items: ["AWS", "Docker", "CI/CD", "Git/GitHub"],
   },
   {
     category: "AI & ML",
     description: "Integrating intelligence into applications",
     items: ["OpenAI APIs", "LLM integration"],
-  },
-  {
-    category: "DevOps",
-    description: "Deployment, containerization, and CI/CD pipelines",
-    items: ["AWS", "Docker", "CI/CD", "Git/GitHub"],
   },
 ];
 
@@ -102,10 +107,10 @@ export const education = [
     degree: "Bachelor of Science (BS) in Computer Science and Engineering",
     institution: "East West University",
     logoKey: "ewu",
-    batch: "Spring 2017",
+    batch: "Spring 17",
   },
   {
-    date: "2013-2025",
+    date: "2013-2015",
     location: "Dhaka",
     degree: "HSC in Science",
     institution: "Notre Dame College",
