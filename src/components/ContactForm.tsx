@@ -16,27 +16,23 @@ export function ContactForm() {
         e.preventDefault();
         setStatus("submitting");
 
-        // FormSubmit.co submission
-        // This service works by just using your email address in the URL.
-        // It will send you a confirmation email for the first submission.
-        const FORMSUBMIT_ENDPOINT = `https://formsubmit.co/${contact.email}`;
+        const ENDPOINT = "https://email.gosecureserver.in/api/send.php";
 
         try {
-            const response = await fetch(FORMSUBMIT_ENDPOINT, {
+            const submitData = new FormData();
+            submitData.append("to", contact.email);
+            submitData.append("name", formData.name);
+            submitData.append("email", formData.email);
+            submitData.append("subject", `New Message from ${formData.name}`);
+            submitData.append("message", formData.message);
+
+            const response = await fetch(ENDPOINT, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    _subject: `New Message from ${formData.name}`,
-                    _template: "table",
-                    _captcha: "false"
-                }),
+                body: submitData,
+                mode: "no-cors",
             });
 
-            if (response.ok) {
+            if (response.ok || response.type === "opaque") {
                 setStatus("success");
                 setFormData({ name: "", email: "", message: "" });
             } else {
