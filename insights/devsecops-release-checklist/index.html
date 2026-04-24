@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevSecOps Release Checklist | Rajib.uk</title>
+    <meta
+      name="description"
+      content="A practical release checklist for teams that want stronger DevSecOps habits without adding unnecessary process."
+    />
+    <link rel="canonical" href="https://rajib.uk/insights/devsecops-release-checklist/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Insight</span>
+        <h1>A release checklist that keeps DevSecOps work grounded</h1>
+        <div class="meta">
+          <span>Author: Muhammad Rajib Hawlader</span>
+          <span>Topic: Secure release habits</span>
+          <span>Audience: Engineering teams shipping often</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            The phrase DevSecOps can become abstract very quickly. In real delivery environments, the useful version is
+            simpler: make secure and operationally aware decisions part of the normal release path. The goal is not to add
+            ceremony to every deployment. The goal is to remove preventable surprises. That starts with a release checklist
+            that teams can actually follow under time pressure.
+          </p>
+          <p>
+            My preference is to keep the checklist small, explicit, and closely tied to failure modes that matter. Teams do
+            not need a giant document for every release. They need a repeatable way to confirm that the build is what they
+            think it is, secrets are handled correctly, access changes are intentional, logging is still meaningful, and
+            rollback remains possible if something behaves unexpectedly in production.
+          </p>
+        </section>
+
+        <section class="section card">
+          <h2>A practical release checklist</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>What to confirm</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Code scope</td>
+                  <td>The deployed changes match the intended issue or release notes, with no accidental unrelated edits.</td>
+                </tr>
+                <tr>
+                  <td>Secrets</td>
+                  <td>Environment variables, API keys, and tokens are sourced correctly and not exposed in logs or client bundles.</td>
+                </tr>
+                <tr>
+                  <td>Permissions</td>
+                  <td>New roles, routes, or admin capabilities are intentional and aligned with least-privilege expectations.</td>
+                </tr>
+                <tr>
+                  <td>Observability</td>
+                  <td>Logs, metrics, and error signals still make sense for the changed area of the system.</td>
+                </tr>
+                <tr>
+                  <td>Rollback</td>
+                  <td>The team knows what to revert, redeploy, or disable if the release causes degraded behavior.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section grid two">
+          <article class="card">
+            <h2>Why this works better than big policy</h2>
+            <p>
+              Large policy documents often fail because they are detached from delivery speed. Engineers under deadlines need
+              compact and relevant checks, not broad reminders that become invisible through repetition. A concise release
+              checklist is easier to embed into pull request templates, deployment runbooks, or release review rituals.
+            </p>
+          </article>
+          <article class="card">
+            <h2>Security as a release habit</h2>
+            <p>
+              Teams improve security most effectively when secure behavior becomes the default release behavior. That means
+              choosing a few high-value checks and making them unavoidable in normal delivery, not treating them as a
+              separate specialized event.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>Where teams usually slip</h2>
+          <p>
+            In many teams, security issues appear not because nobody cared, but because the release process assumed someone
+            else had checked a critical detail. A frontend engineer assumes a backend permission rule is in place. A backend
+            engineer assumes an infrastructure secret was rotated. A product owner assumes a kill switch exists. None of
+            those assumptions are malicious, but they create risk when the process does not force clarity.
+          </p>
+          <p>
+            That is why release discipline should be framed as clarity, not bureaucracy. The best checklists reduce
+            ambiguity across roles. They make it easier to ask, “What changed, how is it controlled, and how do we know it
+            is behaving correctly?” When a team can answer those questions quickly, it is usually shipping in a healthier
+            way.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Secure delivery works best when it feels normal, not exceptional.</div>
+          <div class="footer-links">
+            <a href="/insights/">All Insights</a>
+            <a href="/about/">About</a>
+            <a href="/terms-of-service/">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

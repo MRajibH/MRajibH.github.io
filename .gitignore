@@ -24,6 +24,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+wrangler-*.tgz
+package/
+.cf-pages-manifest-live.json
+.worker-assets-manifest.json
 
 # local env files
 .env*.local
