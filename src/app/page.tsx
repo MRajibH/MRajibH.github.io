@@ -384,7 +384,7 @@ function Footer() {
           </div>
         </div>
         <div className="pt-6 border-t border-white/5 flex flex-wrap justify-between items-center gap-4 text-slate text-sm">
-          <span>© {new Date().getFullYear()} Muhammad Rajib Hawlader. All rights reserved.</span>
+          <span>&copy; {new Date().getFullYear()} Muhammad Rajib Hawlader. All rights reserved.</span>
           <div className="flex gap-6">
             <a href="#" className="hover:text-accent">Privacy Policy</a>
             <a href="#" className="hover:text-accent">Terms of Service</a>
