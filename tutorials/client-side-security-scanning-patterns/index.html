@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Client-Side Security Scanning Patterns | Rajib.uk</title>
+    <meta
+      name="description"
+      content="Secure client-side scanning patterns for browser-based security products, with a focus on privacy, rule execution, and trustworthy reporting."
+    />
+    <link rel="canonical" href="https://rajib.uk/tutorials/client-side-security-scanning-patterns/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/tutorials/">Tutorials</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Tutorial</span>
+        <h1>Secure client-side scanning patterns for browser-based security products</h1>
+        <div class="meta">
+          <span>Topic: Client-side security</span>
+          <span>Audience: Web and product security engineers</span>
+          <span>Theme: Privacy-aware security design</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            Client-side scanning sounds straightforward until you ask a harder question: what exactly is the product
+            allowed to inspect, and under whose consent model? A secure browser-based scanner is not just a set of checks.
+            It is a negotiation between product usefulness, user agency, and the credibility of the findings. If the
+            scanner crosses that line carelessly, even strong technical findings will not save the product’s reputation.
+          </p>
+          <p>
+            I like to design this kind of product around explicit scanning scopes. That might mean DOM-level inspection,
+            header analysis, static asset review, controlled script heuristics, or user-submitted artifacts. The scan
+            should be clear about which scope it is running in. Broad hidden collection makes the product feel deceptive,
+            while narrow declared collection can still produce meaningful results with much better user trust.
+          </p>
+        </section>
+
+        <section class="section grid two">
+          <article class="card">
+            <h2>Useful patterns</h2>
+            <ul class="bullet-list">
+              <li>Keep initial scans local and lightweight where possible.</li>
+              <li>Request deeper permissions only when the user explicitly chooses them.</li>
+              <li>Structure findings into evidence, severity, and recommended action.</li>
+              <li>Separate platform telemetry from security evidence collection.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Anti-patterns</h2>
+            <p>
+              Avoid vague “full security analysis” language if the product is only evaluating a subset of the browser
+              surface. Overclaiming damages trust faster than underclaiming.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>Rule execution, enrichment, and reporting</h2>
+          <p>
+            Good scanner design separates raw collection from the rule engine. That separation makes it easier to update
+            detection logic, explain why a result exists, and control performance overhead. It also creates cleaner
+            opportunities for optional backend enrichment. If a remote service adds threat intelligence or reputation data,
+            the handoff can be described as a separate stage rather than hidden inside an opaque “scan.”
+          </p>
+          <p>
+            Reporting should feel evidentiary, not theatrical. A scanner earns trust when it shows what was observed, why
+            it matters, how confident the finding is, and what action would reduce the risk. Security products that try too
+            hard to shock the user often end up sounding less authoritative, not more.
+          </p>
+          <div class="quote">
+            A security scanner becomes more believable when its claims are narrower, clearer, and better supported.
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>Why this matters for product credibility</h2>
+          <p>
+            Browser-based security tools live in a delicate trust zone. They are close enough to the user environment to
+            feel powerful, but not so privileged that they can safely behave without explanation. The product has to
+            balance friction and depth carefully. In practice, that means building a scanner that can explain itself to
+            cautious users, security buyers, and internal reviewers alike.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Clear scan boundaries are part of the security posture, not just the UX.</div>
+          <div class="footer-links">
+            <a href="/tutorials/">All Tutorials</a>
+            <a href="/tutorials/browser-security-scanner-architecture/">Architecture Notes</a>
+            <a href="/privacy-policy/">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

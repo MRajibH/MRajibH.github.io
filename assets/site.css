@@ -143,6 +143,15 @@ h3 {
   color: var(--muted);
 }
 
+.section ol {
+  padding-left: 22px;
+  color: var(--muted);
+}
+
+.section ol li + li {
+  margin-top: 10px;
+}
+
 .grid {
   display: grid;
   gap: 24px;
@@ -166,6 +175,10 @@ h3 {
 
 .card p:last-child,
 .card ul:last-child {
+  margin-bottom: 0;
+}
+
+.card ol:last-child {
   margin-bottom: 0;
 }
 
@@ -320,6 +333,14 @@ pre {
   border-radius: 16px;
   overflow-x: auto;
   color: #cbd5e1;
+}
+
+.article-link {
+  color: var(--text);
+}
+
+.article-link:hover {
+  color: var(--accent);
 }
 
 @media (max-width: 860px) {

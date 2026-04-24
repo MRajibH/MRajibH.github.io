@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Next.js vs Rust vs Tauri | Rajib.uk</title>
+    <meta
+      name="description"
+      content="A practical comparison of Next.js, Rust, and Tauri for performance, security boundaries, team velocity, and product shape."
+    />
+    <link rel="canonical" href="https://rajib.uk/tutorials/nextjs-rust-tauri-comparison/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/tutorials/">Tutorials</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Tutorial</span>
+        <h1>Next.js vs Rust vs Tauri: how I compare them for performance, security, and product shape</h1>
+        <div class="meta">
+          <span>Topic: Architecture tradeoffs</span>
+          <span>Audience: Technical decision-makers</span>
+          <span>Theme: Match the stack to the product</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            These technologies are often compared as if they compete on one axis, usually performance. That is too narrow.
+            Next.js, Rust, and Tauri live at different layers of product design. Next.js is primarily a web application
+            delivery framework. Rust is a systems and backend language that can shape both server and native client
+            components. Tauri is a desktop application shell that lets web interfaces reach native capabilities with a
+            lighter footprint than older desktop wrappers. The correct comparison starts with product boundaries, not
+            benchmark screenshots.
+          </p>
+          <p>
+            When I evaluate them, I ask what the product is trying to be. Does it need browser reach first? Does it need
+            local device access and desktop presence? Does it need low-level control, concurrency safety, or predictable
+            performance under backend-heavy workloads? The answer usually narrows the decision quickly.
+          </p>
+        </section>
+
+        <section class="section grid three">
+          <article class="card">
+            <h3>Next.js</h3>
+            <p>
+              Strong for product velocity, SEO, web reach, and content-heavy surfaces. Best when distribution through the
+              browser matters more than local device integration.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Rust</h3>
+            <p>
+              Strong for backend services, performance-sensitive components, and security-conscious code where memory
+              discipline and explicit control matter.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Tauri</h3>
+            <p>
+              Strong when the product needs desktop workflows, local resources, and a smaller native shell around a web UI.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>Performance is only one part of the story</h2>
+          <p>
+            Rust usually wins on raw systems-level performance and predictable resource control, but that does not mean a
+            Rust-first product ships faster or creates better business outcomes for every team. Next.js can dramatically
+            reduce time-to-market for interfaces, content experiences, and account-driven web products. Tauri sits in the
+            middle by allowing web frontend skills to power a desktop experience without requiring a heavy Electron-sized
+            footprint in every case.
+          </p>
+          <p>
+            Security discussions also need nuance. Rust improves certain classes of implementation safety, but a secure
+            system still depends on architecture, access control, data handling, and deployment hygiene. Next.js can be
+            very safe when the application boundary is well designed. Tauri can be a strong option when native capability
+            exposure is intentionally constrained rather than opened broadly.
+          </p>
+          <div class="quote">
+            The best stack decision is rarely “which tool is strongest?” It is “which tool matches the shape of the product
+            and the discipline of the team building it?”
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>How I would choose in practice</h2>
+          <p>
+            For content-rich SaaS products, dashboards, and public web platforms, I would usually lean Next.js first unless
+            there is a clear reason not to. For core engines, high-throughput services, security-sensitive processing, or
+            infrastructure components, Rust becomes much more attractive. For internal tools or end-user products that need
+            desktop reach with local system interaction, Tauri becomes a compelling bridge.
+          </p>
+          <p>
+            In many good architectures, these are not mutually exclusive choices. A serious product might use Next.js for
+            the public web surface, Rust for critical backend services, and Tauri for an operator console. The real
+            decision is how much complexity the team can absorb without losing delivery focus.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Architecture choices become clearer when they are tied to product shape instead of hype cycles.</div>
+          <div class="footer-links">
+            <a href="/tutorials/">All Tutorials</a>
+            <a href="/insights/cloudflare-nextjs-migration-notes/">Cloudflare Migration Notes</a>
+            <a href="/terms-of-service/">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

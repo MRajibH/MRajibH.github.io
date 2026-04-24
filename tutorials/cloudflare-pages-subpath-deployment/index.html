@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cloudflare Pages Subpath Deployment Guide | Rajib.uk</title>
+    <meta
+      name="description"
+      content="How to deploy static apps under a Cloudflare Pages subpath using base paths, workers routing, and clean asset handling."
+    />
+    <link rel="canonical" href="https://rajib.uk/tutorials/cloudflare-pages-subpath-deployment/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/tutorials/">Tutorials</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Tutorial</span>
+        <h1>Deploying static apps under a Cloudflare Pages subpath without breaking assets, routing, or trust</h1>
+        <div class="meta">
+          <span>Topic: Cloudflare deployment</span>
+          <span>Audience: Frontend and platform engineers</span>
+          <span>Theme: Path-based hosting discipline</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            Hosting an app at a subpath such as <code>/resume-studio/</code> seems small until you discover how many parts
+            of the stack assume root hosting. Asset URLs, canonical links, internal navigation, sitemap entries, service
+            workers, and even client-side PDF exports can all quietly assume the app lives at <code>/</code>. Cloudflare
+            Pages is excellent for static delivery, but path-based routing usually needs more deliberate work than a normal
+            hostname deployment.
+          </p>
+          <p>
+            The first principle is simple: choose one routing truth and carry it through the whole stack. If the app must
+            live at a subpath, the frontend should know that, the static assets should know that, and the platform routing
+            layer should know that. Problems usually appear when only one of those layers is updated.
+          </p>
+        </section>
+
+        <section class="section grid two">
+          <article class="card">
+            <h2>What usually has to change</h2>
+            <ul class="bullet-list">
+              <li>Framework base path or asset prefix configuration.</li>
+              <li>Internal links, metadata, and canonical URLs.</li>
+              <li>Worker or proxy rules that rewrite the request path correctly.</li>
+              <li>Verification of generated static asset URLs after deployment.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Where teams get surprised</h2>
+            <p>
+              The homepage may load correctly while nested routes, icons, PDFs, or client-side downloads still break because
+              one part of the app is quietly building root-relative URLs.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>Why the worker layer matters</h2>
+          <p>
+            Cloudflare Pages custom domains map cleanly to hostnames, but path-based publishing often benefits from a Worker
+            route that rewrites or proxies subpath traffic to the correct Pages project. That worker becomes the thin layer
+            that translates user-facing URL shape into origin-facing asset delivery. It should stay small, predictable, and
+            well documented because it becomes part of the deployment contract.
+          </p>
+          <p>
+            I also like to verify the deployed HTML directly after release. If the public page still references
+            root-relative assets when it should reference subpath assets, the app is not actually deployed correctly even if
+            the first paint looks fine. Path deployments fail in details, so the verification process needs to look at
+            details too.
+          </p>
+          <div class="quote">
+            A subpath deployment is stable only when links, assets, metadata, and routing all agree about where the app
+            lives.
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>Trust and crawl implications</h2>
+          <p>
+            Path-based hosting affects more than runtime behavior. Search engines, ad reviewers, and users all notice when
+            navigation feels inconsistent or when policy pages and favicons resolve strangely. That is why I treat canonical
+            URLs, sitemap entries, and footer navigation as part of the deployment work rather than post-launch cleanup. A
+            technical deployment is also a publishing deployment when the site is public.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Path-based hosting is reliable when publishing details are treated as infrastructure, not decoration.</div>
+          <div class="footer-links">
+            <a href="/tutorials/">All Tutorials</a>
+            <a href="/insights/cloudflare-nextjs-migration-notes/">Migration Notes</a>
+            <a href="/editorial-policy/">Editorial Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

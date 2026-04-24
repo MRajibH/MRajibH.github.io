@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>vNOC Deployment on Rocky Linux | Rajib.uk</title>
+    <meta
+      name="description"
+      content="How to approach a Rocky Linux deployment for vNOC-like systems with SELinux awareness, service isolation, and enterprise Linux discipline."
+    />
+    <link rel="canonical" href="https://rajib.uk/tutorials/vnoc-rocky-linux-deployment/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/tutorials/">Tutorials</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Tutorial</span>
+        <h1>How I would structure a Rocky Linux deployment for vNOC and related telecom workloads</h1>
+        <div class="meta">
+          <span>Topic: Linux deployment</span>
+          <span>Platform: Rocky Linux</span>
+          <span>Theme: Enterprise operations hygiene</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            Rocky Linux is often the better fit when an operations platform has to live inside more conservative enterprise
+            environments. The value is not simply compatibility with the RHEL ecosystem. The value is predictability:
+            longer-lived package expectations, clearer security hardening patterns, and operational teams who are already
+            used to the tooling. For a vNOC-style deployment, that can reduce friction if the surrounding environment is
+            already standardized around enterprise Linux habits.
+          </p>
+          <p>
+            The tradeoff is that teams sometimes treat Rocky Linux as permission to skip architectural discipline because
+            the base operating system feels “serious enough.” That is a mistake. A messy service layout is still messy on
+            Rocky Linux. What changes is that the platform gives you stronger defaults for control and policy if you are
+            willing to use them well.
+          </p>
+        </section>
+
+        <section class="section grid two">
+          <article class="card">
+            <h2>Why Rocky can be the better choice</h2>
+            <ul class="bullet-list">
+              <li>Operational teams often know the tooling and upgrade habits already.</li>
+              <li>SELinux can enforce cleaner service boundaries if configured deliberately.</li>
+              <li>Package and repository discipline tends to be stronger in enterprise environments.</li>
+              <li>Compliance-minded organizations may be more comfortable with the platform family.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>What not to do</h2>
+            <p>
+              Do not disable SELinux immediately just to make an install pass. If policy friction appears, that is often a
+              sign the deployment boundaries are unclear. Fixing the service model is usually better than removing one of
+              the platform’s strongest guardrails.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>SELinux, service accounts, and repository discipline</h2>
+          <p>
+            In a Rocky Linux deployment, I would think early about where the application writes files, how sockets are
+            exposed, and which services truly need network-facing access. If an app writes temporary uploads, generated
+            artifacts, or logs into arbitrary directories, that should be normalized before production. The goal is not to
+            fight SELinux. The goal is to make the application honest about its behavior.
+          </p>
+          <p>
+            I also prefer to document repository usage carefully. Installing from a mix of unofficial repositories and
+            one-off binary downloads often creates upgrade pain later. A network operations platform usually needs to stay
+            alive for years, so install convenience should not outweigh long-term supportability. If a component cannot be
+            packaged sensibly, that is worth documenting explicitly rather than leaving future maintainers to rediscover it
+            the hard way.
+          </p>
+        </section>
+
+        <section class="section card">
+          <h2>Ingress, firewalls, and rollout strategy</h2>
+          <p>
+            Firewalld, reverse proxy configuration, and health checks should be treated as part of the application
+            deployment rather than separate infrastructure trivia. On operations-heavy platforms, a surprising amount of
+            downtime comes from partial exposure problems: the app starts, but health probes fail; the proxy works, but the
+            upstream socket is inaccessible; the service is reachable, but background tasks cannot reach the database.
+          </p>
+          <p>
+            My preferred rollout is staged and measurable: validate runtime dependencies, validate service startup, validate
+            local connectivity, validate proxied requests, then validate background job behavior. This sequence sounds
+            simple, but it prevents the classic situation where a team tests only the login page and declares the whole
+            platform healthy.
+          </p>
+          <div class="quote">
+            Enterprise Linux pays off most when you let it enforce clarity rather than using it as a prestige operating
+            system with consumer-grade deployment habits.
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Security posture improves when deployment habits are explicit and repeatable.</div>
+          <div class="footer-links">
+            <a href="/tutorials/">All Tutorials</a>
+            <a href="/tutorials/mtls-implementation-guide/">mTLS Guide</a>
+            <a href="/editorial-policy/">Editorial Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

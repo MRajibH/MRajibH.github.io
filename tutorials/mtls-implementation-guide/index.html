@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mTLS Implementation Guide | Rajib.uk</title>
+    <meta
+      name="description"
+      content="A practical mTLS guide for internal services, covering certificate authority design, rollout strategy, service identity, and operational pitfalls."
+    />
+    <link rel="canonical" href="https://rajib.uk/tutorials/mtls-implementation-guide/" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="640x640" />
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <nav class="nav">
+          <a class="brand" href="/"><span>Rajib</span>.uk</a>
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/case-studies/">Case Studies</a>
+            <a href="/insights/">Insights</a>
+            <a href="/tutorials/">Tutorials</a>
+            <a href="/#contact">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="page hero">
+        <span class="eyebrow">Tutorial</span>
+        <h1>An mTLS implementation guide for internal platforms that need stronger service trust</h1>
+        <div class="meta">
+          <span>Topic: Transport security</span>
+          <span>Audience: Backend and platform engineers</span>
+          <span>Theme: Trust between services</span>
+        </div>
+
+        <section class="section card">
+          <p>
+            Teams often adopt mTLS because “zero trust” sounds like the right answer, then discover that certificates are
+            easy to describe and hard to operate. The technical idea is straightforward: both sides of a connection prove
+            identity with certificates. The hard part is deciding how identities are issued, what boundaries they map to,
+            how rotation works, and what happens when one part of the fleet is behind. mTLS helps most when it is treated
+            as a service identity system, not a checkbox.
+          </p>
+          <p>
+            Before enabling mTLS everywhere, I like to clarify what problem it is solving. Is the goal to prevent lateral
+            movement inside a private network? To stop unauthenticated service-to-service calls? To make internal traffic
+            policy-driven and auditable? The answers affect how much certificate granularity and issuance automation the
+            team actually needs.
+          </p>
+        </section>
+
+        <section class="section grid two">
+          <article class="card">
+            <h2>Decisions that matter early</h2>
+            <ul class="bullet-list">
+              <li>Whether certificates identify hosts, services, workloads, or environments.</li>
+              <li>How the internal certificate authority is secured and who can issue from it.</li>
+              <li>How revocation, expiry, and rotation failures will be detected in practice.</li>
+              <li>How rollout avoids breaking older services before trust policy is fully aligned.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Where teams go wrong</h2>
+            <p>
+              The common failure is treating certificate issuance as separate from service discovery and deployment
+              automation. Then identity exists on paper but not in a way the platform can keep updated reliably.
+            </p>
+          </article>
+        </section>
+
+        <section class="section card">
+          <h2>Certificate authority shape and operational model</h2>
+          <p>
+            I generally prefer a narrow, internal certificate authority model with explicit issuance boundaries rather than
+            a broad CA that can sign anything for any part of the company. The smaller the authority surface, the easier it
+            is to reason about compromise and misuse. In many environments, separate intermediates for different platform
+            domains or environments make incident handling cleaner because trust can be narrowed without rebuilding the
+            entire PKI approach.
+          </p>
+          <p>
+            Rotation is where mTLS either becomes trustworthy or painful. Shorter-lived certificates can improve security,
+            but only if the renewal path is automated, observable, and tested under failure. If rotation is manual, the
+            organization is often better off with a more modest security pattern than a brittle mTLS rollout that breaks at
+            expiry time. Security controls that teams cannot operate predictably tend to get bypassed later.
+          </p>
+          <div class="quote">
+            mTLS succeeds when identity, issuance, and deployment automation are designed together. Otherwise it becomes an
+            outage generator with good intentions.
+          </div>
+        </section>
+
+        <section class="section card">
+          <h2>How I would roll it out</h2>
+          <p>
+            My preference is incremental rollout: first establish server-side certificates and verification discipline, then
+            introduce optional client certificate validation for selected services, then tighten policy once telemetry shows
+            who is still connecting without the expected identity. This pattern gives the team data before enforcement.
+            Hard cutovers are sometimes necessary, but they are usually riskier than teams expect because hidden callers
+            exist in most internal networks.
+          </p>
+          <p>
+            Good telemetry matters here. If handshake failures, invalid chains, expired certificates, and rejected client
+            identities are not visible in monitoring, the rollout will feel random. Security controls need support-grade
+            observability or the operations team will rightly resist them.
+          </p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div>Security controls should raise trust without making the platform impossible to operate.</div>
+          <div class="footer-links">
+            <a href="/tutorials/">All Tutorials</a>
+            <a href="/tutorials/client-side-security-scanning-patterns/">Client-Side Security Patterns</a>
+            <a href="/privacy-policy/">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
