@@ -1,3 +1,0 @@
-# Rajib.uk ads.txt
-# Replace the publisher ID below after your AdSense account is approved.
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
