@@ -11,6 +11,11 @@ const ROOT = process.cwd();
 const DIR = path.join(ROOT, "content", "blog");
 const topics = JSON.parse(fs.readFileSync(path.join(ROOT, "content", "topics.json"), "utf8")).map((t) => t.slug);
 
+// `--include-drafts` checks drafts too, to see whether they are ready to publish.
+const includeDrafts = process.argv.includes("--include-drafts");
+// `--only=a.md,b.md` limits the check to those files.
+const only = (process.argv.find((a) => a.startsWith("--only=")) ?? "").slice(7).split(",").filter(Boolean);
+
 const MIN_WORDS = 800;
 const MIN_SECTIONS = 3;
 const DESCRIPTION_RANGE = [50, 160];
@@ -26,11 +31,13 @@ let drafts = 0;
 
 for (const file of files) {
   const { data, content } = matter(fs.readFileSync(path.join(DIR, file), "utf8"));
+  if (only.length > 0 && !only.includes(file)) continue;
   if (data.draft === true) {
     drafts++;
-    continue;
+    if (!includeDrafts) continue;
+  } else {
+    published++;
   }
-  published++;
   const fail = (msg) => problems.push(`${file}: ${msg}`);
   const title = String(data.title ?? "");
   const description = String(data.description ?? "");
@@ -38,6 +45,7 @@ for (const file of files) {
   const prose = content.replace(/```[\s\S]*?```/g, " ");
   const words = prose.split(/\s+/).filter(Boolean).length;
   const sections = (content.match(/^## /gm) ?? []).length;
+  if (includeDrafts) console.log(`  ${file}: ${words} words, ${sections} sections`);
 
   if (!/^[a-z0-9]+(-[a-z0-9]+)*\.md$/.test(file)) fail("file name must be lowercase words joined by hyphens");
   if (title.length < TITLE_RANGE[0] || title.length > TITLE_RANGE[1])
@@ -66,7 +74,7 @@ if (problems.length > 0) {
   console.error("");
   process.exit(1);
 }
-if (published < 20) {
+if (published < 20 && !includeDrafts) {
   console.log(
     `Note: AdSense reviewers expect a site with substantial content. ${published} article(s) published; aim for 20 or more before applying.`,
   );

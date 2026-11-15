@@ -12,6 +12,7 @@ import {
 } from "@/lib/posts";
 import { PostCard } from "@/components/PostList";
 import { AdSlot } from "@/components/AdSlot";
+import { ShareButtons } from "@/components/ShareButtons";
 
 type Props = { params: { slug: string } };
 
@@ -41,7 +42,9 @@ export function generateMetadata({ params }: Props): Metadata {
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       authors: [site.author],
+      siteName: site.name,
     },
+    twitter: { card: "summary_large_image", title: post.title, description: post.description },
   };
 }
 
@@ -122,6 +125,8 @@ export default async function ArticlePage({ params }: Props) {
             </li>
           ))}
         </ul>
+
+        <ShareButtons url={`${site.url}/blog/${post.slug}/`} title={post.title} />
 
         <AdSlot slot={adsense.slots.articleEnd} minHeight={250} />
 

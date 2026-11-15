@@ -24,9 +24,8 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.title,
     description: site.description,
-    images: [{ url: "/profile.jpg", width: 240, height: 240, alt: site.author }],
   },
-  twitter: { card: "summary", title: site.title, description: site.description, images: ["/profile.jpg"] },
+  twitter: { card: "summary_large_image", title: site.title, description: site.description },
 };
 
 // Runs before first paint so the saved or system theme is applied without a flash.
