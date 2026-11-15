@@ -1,4 +1,7 @@
-# Handoff: 30 draft guides for rajib.uk
+# Handoff: 30 guides for rajib.uk
+
+**Status 2026-11-15: all 30 guides are written and published (no longer drafts), at Rajib's
+decision. The rest of this file is the record of how they were written.**
 
 Written 2026-11-15. Read this to continue the work in a new session if the usage limit
 interrupts it. Background and policy: `docs/ADSENSE_SITE_PLAN.md`.

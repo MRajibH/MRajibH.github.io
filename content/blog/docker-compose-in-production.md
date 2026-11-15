@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "What a development Compose file needs before it runs in production."
   items: ["Pinned image versions", "Health checks", "Restart policies", "Resource limits"]
-draft: true
 ---
 
 A Compose file written for development is tuned for convenience: source code mounted from the host, every port published, passwords in plain text, containers that stay down when they crash. Run that file on a server and each of those conveniences becomes an outage or a security problem. This guide goes through the changes that make a Compose project fit for a single production server, with the reason for each and a command that proves it took effect.

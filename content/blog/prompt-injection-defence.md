@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "No single defence is enough, so they are stacked."
   items: ["Keep untrusted text separate", "Least-privilege tools", "Human approval for risky actions", "Check and monitor output"]
-draft: true
 ---
 
 A language model reads its instructions and its data through the same channel: text. Prompt injection is what happens when text that was supposed to be data gets treated as instructions. This guide explains the mechanism at the level you need to defend against it, then walks through the controls that limit the damage: least-privilege tools, separation of untrusted content, output validation, human approval and monitoring. By the end you will be able to review an LLM feature and say what an injected prompt could make it do, and what stops it.

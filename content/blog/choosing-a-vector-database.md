@@ -7,7 +7,6 @@ art:
   kind: compare
   caption: "Three vector stores and where each one lives."
   items: ["pgvector | Inside PostgreSQL", "Qdrant | Dedicated server", "Chroma | Embedded, quick start"]
-draft: true
 ---
 
 Every retrieval-augmented generation (RAG) system needs somewhere to store embeddings and find the nearest ones quickly, and the choice of store shapes how you deploy, filter, back up and scale the whole system. This guide compares three popular open-source options, pgvector, Qdrant and Chroma, by running the same small workload on each and looking at what differs. By the end you will be able to pick one for your project and explain why.

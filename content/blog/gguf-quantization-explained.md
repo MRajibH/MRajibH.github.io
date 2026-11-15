@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Quantization trades a little accuracy for a model that fits your hardware."
   items: ["Full-precision model", "Quantize", "GGUF file", "Runs on your hardware"]
-draft: true
 ---
 
 Open a model repository on Hugging Face and you are faced with twenty files named things like `Q4_K_M`, `Q5_K_S`, `IQ3_XXS` and `Q8_0`, with no obvious way to choose. The names describe how much the model has been compressed, and the choice decides whether it fits on your hardware and how well it answers. This article explains the file format, decodes the naming scheme, shows how much memory each level costs using published measurements, and gives you a method for picking one, plus the commands to download a specific level or build your own.

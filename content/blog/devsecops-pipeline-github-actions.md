@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Each change passes the same checks before it can be deployed."
   items: ["Commit", "Test", "Scan", "Build", "Deploy"]
-draft: true
 ---
 
 Security checks that run by hand, or once a quarter, find problems long after the code that caused them has shipped. DevSecOps means putting those checks into the same automated pipeline that already builds and tests the code, so a leaked credential or a vulnerable dependency fails a pull request the way a broken test does. This guide builds such a pipeline in GitHub Actions, one job at a time.

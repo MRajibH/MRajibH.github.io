@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "vLLM sits between many clients and the GPU and batches their requests."
   items: ["Many clients", "OpenAI-compatible API", "vLLM batching", "GPU"]
-draft: true
 ---
 
 A model that answers one person at a time on a workstation is a different problem from a model that answers fifty requests at once without falling over. vLLM is an open-source inference server built for the second case: it batches concurrent requests on the GPU and exposes them through an API that follows the OpenAI format. By the end of this guide you will have vLLM running in a container, know which flags decide whether it fits in memory and how many requests it handles, and know what to monitor once real traffic arrives.

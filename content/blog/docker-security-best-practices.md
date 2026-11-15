@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "Runtime limits that reduce what a compromised container can do."
   items: ["Non-root user", "Dropped capabilities", "Read-only filesystem", "Resource limits"]
-draft: true
 ---
 
 A container is a normal Linux process with restrictions placed around it, not a virtual machine. With default settings those restrictions are looser than most people assume: the process usually runs as root, keeps a set of kernel privileges it rarely needs, and can write anywhere in its filesystem. This guide shows how to tighten each of those at runtime, why each setting matters, and how to confirm it took effect.

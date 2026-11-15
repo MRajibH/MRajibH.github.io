@@ -7,7 +7,6 @@ art:
   kind: terminal
   caption: "Create a key, install it on the server, and test the config before reloading."
   items: ["ssh-keygen -t ed25519", "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com", "sudo sshd -t"]
-draft: true
 ---
 
 Any server with SSH open to the internet receives a steady stream of automated login attempts. Password guessing only has to succeed once, so the reliable fix is to make passwords irrelevant: authenticate with keys, refuse everything else, and limit which accounts may connect at all. This guide covers key setup, how the SSH daemon actually reads its configuration, a hardened set of options with the reasoning for each, access restrictions and fail2ban, with a verification step after every change.

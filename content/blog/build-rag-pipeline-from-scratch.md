@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "The path from your documents to an answer grounded in them."
   items: ["Documents", "Chunks", "Embeddings", "Vector store", "Answer"]
-draft: true
 ---
 
 A language model knows only what was in its training data, so it cannot answer questions about your own documents, and when asked anyway it tends to produce confident guesses. Retrieval-augmented generation (RAG) addresses this by finding the relevant passages first and handing them to the model along with the question. This guide builds a complete RAG pipeline in about a hundred lines of Python with no framework, so you can see every step: by the end you will have a script that indexes a folder of documents and answers questions from them, naming the files it used.

@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "The design decisions an HTTP API has to get right, in the order clients meet them."
   items: ["Resource names", "Methods and status codes", "Error format", "Pagination", "Versioning"]
-draft: true
 ---
 
 An API is easy to publish and hard to change: once another team or a customer has written code against it, every inconsistency becomes permanent. Most of the pain comes from a small set of decisions about names, status codes, errors and versioning that are cheap to get right at the start. This guide gives a concrete convention for each, with the reasoning, so you can design an HTTP API whose behaviour clients can predict without reading every page of the documentation.

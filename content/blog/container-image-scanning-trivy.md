@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Scanning fits into the build as a gate before an image is shipped."
   items: ["Build image", "Scan with Trivy", "Fix or accept findings", "Ship"]
-draft: true
 ---
 
 A container image carries an operating system's packages and your application's dependencies with it, and both keep collecting publicly known vulnerabilities after the image is built. Trivy is an open-source scanner from Aqua Security that lists those vulnerabilities for any image. This guide shows how to run it, how to read its report without drowning in it, how to fix the findings that matter, and how to make a build fail when a fixable serious issue appears.

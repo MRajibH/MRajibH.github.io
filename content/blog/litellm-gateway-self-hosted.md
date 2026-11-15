@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "One gateway gives every application the same API for every model."
   items: ["Your applications", "LiteLLM gateway", "Local and cloud models"]
-draft: true
 ---
 
 Once you run more than one model, every application ends up with its own list of base URLs, API keys and model names, and changing any of them means touching every application. A gateway fixes that by giving all clients one address and one API, and keeping the knowledge of which model lives where in a single config file. This guide sets up LiteLLM as that gateway: by the end you will have one OpenAI-compatible endpoint that routes to self-hosted and hosted models, issues separate keys per application with their own limits, and fails over when a backend is down.

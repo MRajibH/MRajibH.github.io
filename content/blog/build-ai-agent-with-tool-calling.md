@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "The loop an agent runs: the model asks for a tool, your code runs it, the model continues."
   items: ["Request", "Model", "Tool call", "Tool result", "Answer"]
-draft: true
 ---
 
 Agent frameworks hide a mechanism that is small enough to write by hand, and until you have written it once, their behaviour and their failures are hard to reason about. This guide builds a complete tool-calling agent in about a hundred lines of Python with no framework, using the OpenAI-compatible chat completions API so the same code runs against a hosted model or a local server. By the end you will understand every message that passes between your code and the model, and know where the guard rails have to go.

@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "Hardening is a set of layers, each closing off a different route in."
   items: ["Updates applied", "SSH keys only", "Firewall", "Least privilege", "Logs and audit"]
-draft: true
 ---
 
 A freshly installed server is rarely insecure in dramatic ways. It is insecure in small ones: a package that has not been patched, a service listening that nobody uses, an account with more access than it needs. This checklist works through those in order of value, with the commands for Debian and Ubuntu on one side and RHEL-family systems (RHEL, Rocky Linux, AlmaLinux) on the other, the reason for each step and a way to confirm it took effect.

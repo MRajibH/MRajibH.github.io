@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "The stages of secrets handling, from a plain .env file to a central vault."
   items: ["Plain .env file", "Leak scanning", "Encrypted in Git", "Central vault"]
-draft: true
 ---
 
 Every application needs a handful of values that must stay private: a database password, an API key, a signing key. Small teams usually start with those values in a `.env` file passed around by chat, and the first leak follows from there. This guide lays out a path in stages, from making the `.env` file safe, through encrypted secrets stored in Git, to a dedicated vault, so you can take the step that fits your team now and recognise when the next one is due.

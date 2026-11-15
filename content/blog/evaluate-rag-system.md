@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "An evaluation run scores retrieval and the final answer separately."
   items: ["Test questions", "Retrieve", "Generate", "Score"]
-draft: true
 ---
 
 A retrieval-augmented generation (RAG) system can look fine in a demo and still give wrong answers to a third of real questions, and without measurement you cannot tell whether a change to the chunk size, the embedding model or the prompt made things better or worse. This guide shows how to build a test set, measure the retrieval and generation stages separately with a few dozen lines of Python, and turn the result into a check you can run after every change.

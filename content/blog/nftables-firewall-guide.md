@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Every incoming packet is checked against the rules of the input chain."
   items: ["Incoming packet", "input chain", "Rules in order", "Accept or drop"]
-draft: true
 ---
 
 A server with a public address is probed within minutes of coming online, and every listening service it exposes by accident is a service you now have to defend. A host firewall narrows that down to the ports you actually intend to offer. This guide shows how to write a default-deny ruleset with nftables, the packet filtering framework that replaced iptables in the Linux kernel, how to test it without locking yourself out of a remote machine, and how to keep it across reboots.

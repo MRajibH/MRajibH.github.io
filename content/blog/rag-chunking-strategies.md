@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "How a document becomes chunks that can be retrieved on their own."
   items: ["Document", "Split on structure", "Add overlap", "Retrievable chunks"]
-draft: true
 ---
 
 In a retrieval-augmented generation (RAG) system, the model can only answer from the passages that search returns, and search can only return the pieces you cut the documents into. Cut badly and the answer to a question ends up split across two pieces, or buried in one so broad that it matches nothing well. This guide explains what makes a chunk retrieve well, compares the main splitting strategies with working code, and shows how to choose between them by measuring instead of guessing.

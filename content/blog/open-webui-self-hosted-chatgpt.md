@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "A chat request stays on your own machine from browser to model."
   items: ["Your browser", "Open WebUI", "Ollama", "Local model"]
-draft: true
 ---
 
 A local model in a terminal is useful for one person who likes terminals. To give a household or a team something they will actually use, you need a browser chat interface with accounts, conversation history and file uploads, and you need the conversations to stay on your own server. Open WebUI provides that interface, and Ollama runs the models behind it. This guide builds the pair with Docker Compose, then covers the parts that tutorials tend to skip: who can sign up, how the two services reach each other, HTTPS, backups and updates.

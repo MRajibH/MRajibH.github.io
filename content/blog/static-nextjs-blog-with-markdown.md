@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Every page is produced once at build time and then served as a file."
   items: ["Markdown files", "Build", "Static HTML", "File host"]
-draft: true
 ---
 
 This site has no server, no database and no content management system. Every page is an HTML file produced once, at build time, and served as a static file. This article walks through how that works: where the articles live, how Markdown becomes a page, how the light and dark themes switch without a flash, and how the build refuses to publish pages that are not ready.

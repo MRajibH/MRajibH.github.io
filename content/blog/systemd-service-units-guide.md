@@ -7,7 +7,6 @@ art:
   kind: terminal
   caption: "Load the unit, start it now and at boot, then check it is running."
   items: ["sudo systemctl daemon-reload", "sudo systemctl enable --now notes-api.service", "systemctl status notes-api.service"]
-draft: true
 ---
 
 A program started from a terminal dies when the session ends, does not come back after a crash or a reboot, and usually runs with far more access than it needs. A systemd service unit fixes all three with a short text file. This guide shows how to write one for your own application, choose the right service type and restart policy, order it correctly against the network and other services, and then confine it with systemd's sandboxing options, checking each step as you go.

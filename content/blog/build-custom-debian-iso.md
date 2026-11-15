@@ -7,7 +7,6 @@ art:
   kind: terminal
   caption: "live-build turns a configuration directory into a bootable ISO."
   items: ["sudo apt install live-build", "lb config", "sudo lb build"]
-draft: true
 ---
 
 Installing Debian and then adding the same packages and settings by hand on every machine is slow and hard to repeat exactly. live-build, the tool the Debian project uses to produce its own live images, turns a directory of plain-text configuration into a bootable ISO that already contains your packages, files and settings. This guide takes you from an empty directory to an image you have booted in a virtual machine, and explains what each piece of the configuration does so you can adapt it.

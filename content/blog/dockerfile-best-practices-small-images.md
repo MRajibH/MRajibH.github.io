@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "A multi-stage build keeps compilers and build tools out of the final image."
   items: ["Build stage", "Copy the result", "Small runtime image"]
-draft: true
 ---
 
 A Dockerfile that merely works is easy to write. One that rebuilds in seconds after a code change, produces an image a fraction of the size, and does not ship compilers, credentials or stale packages takes a little more thought about how builds actually work. This guide explains the mechanics behind layers and the build cache, then applies them step by step to a real Dockerfile.

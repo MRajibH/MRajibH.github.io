@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "What each part of the machine does when you run a model locally."
   items: ["GPU memory (VRAM): holds the model", "System RAM: overflow and CPU inference", "CPU: runs what the GPU cannot", "Disk: stores the model files"]
-draft: true
 ---
 
 Most disappointment with local language models comes from a mismatch between the model and the machine: a model that almost fits, spills onto the CPU, and answers at a crawl. The good news is that the requirement is predictable. This article shows how to estimate the memory a model needs from two numbers, explains what each hardware component actually contributes, and gives you commands to check what your current machine can run before you spend anything.

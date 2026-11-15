@@ -7,7 +7,6 @@ art:
   kind: compare
   caption: "Three ways to serve a model yourself, and what each is best at."
   items: ["Ollama | Easiest to set up", "llama.cpp | Most control", "vLLM | Built for many users"]
-draft: true
 ---
 
 Three names come up whenever someone decides to run a language model on their own hardware: Ollama, llama.cpp and vLLM. They overlap enough to be confusing and differ enough that picking the wrong one costs real time. This article explains what each one is built for, shows the commands to start each, and gives you a way to decide based on your hardware and your number of users rather than on popularity.

@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "MCP is the connection between an AI application and the tools it can use."
   items: ["AI application", "MCP client", "MCP server", "Tools and data"]
-draft: true
 ---
 
 Every AI application that can call tools needs those tools written for it, and without a shared standard each assistant, editor and agent framework ends up with its own incompatible plug-in format. The Model Context Protocol (MCP) is an open standard that fixes this: you write a server once, and any MCP-capable application can use it. This guide explains how the protocol works, shows the actual messages, and builds a small Python server that you can run, test and connect to a real application.

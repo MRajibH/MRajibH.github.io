@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "Keyword and vector results are merged, then reordered by a reranker."
   items: ["Query", "Keyword + vector search", "Fuse results", "Rerank", "Top results"]
-draft: true
 ---
 
 Vector search finds text that means the same thing as the question, but it regularly misses the chunk containing the exact error code, product number or function name the user typed. Keyword search has the opposite weakness. This guide shows how to run both, merge their results with reciprocal rank fusion, and then reorder the merged list with a reranking model, so that the handful of chunks you finally send to the language model are the right ones.

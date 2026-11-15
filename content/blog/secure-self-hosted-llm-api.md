@@ -7,7 +7,6 @@ art:
   kind: layers
   caption: "Each layer stops a different kind of unwanted request before it reaches the model."
   items: ["Reverse proxy with TLS", "API key per client", "Rate limits", "Model server on localhost"]
-draft: true
 ---
 
 Most model servers are built to be easy to start, not safe to expose. Ollama has no login at all, and vLLM's built-in key covers only part of its API. Put either one on a public address as it comes and anyone who finds the port can use your GPU, read whatever the model can reach, and in some cases control the server. This guide builds the protection in layers: by the end you will have a model server that listens only locally, an nginx reverse proxy that terminates TLS, checks a key per client, forwards only the routes you choose and limits how hard any one client can push.

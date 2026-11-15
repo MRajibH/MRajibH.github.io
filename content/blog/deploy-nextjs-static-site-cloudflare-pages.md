@@ -7,7 +7,6 @@ art:
   kind: flow
   caption: "A push to the repository becomes a live site with no manual steps."
   items: ["git push", "Cloudflare builds the site", "Static files deployed", "Served worldwide"]
-draft: true
 ---
 
 A statically exported Next.js site is a folder of HTML, CSS and JavaScript files, and it needs a host that serves that folder quickly and rebuilds it whenever the repository changes. Cloudflare Pages does both. This guide takes a working static export from a Git repository to a live site on your own domain, with security headers, redirects, preview deployments for every branch, and a list of the failures you are most likely to meet on the way.

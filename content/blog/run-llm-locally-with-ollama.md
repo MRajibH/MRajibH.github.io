@@ -7,7 +7,6 @@ art:
   kind: terminal
   caption: "Three commands take you from a bare machine to a model answering locally."
   items: ["curl -fsSL https://ollama.com/install.sh | sh", "ollama pull llama3.2", "ollama run llama3.2"]
-draft: true
 ---
 
 Sending prompts to a hosted API is easy until the data is private, the bill grows, or the network is not available. Ollama is the shortest path to running a large language model (LLM) on your own machine: one install command, one command to download a model, and a local HTTP API that your scripts can call. By the end of this guide you will have Ollama running as a service on Linux, a model answering over the API, and a clear idea of which settings matter and why.

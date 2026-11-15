@@ -7,7 +7,6 @@ art:
   kind: terminal
   caption: "The first commands to run on a slow server, before changing anything."
   items: ["uptime", "vmstat 1 5", "iostat -xz 1 3", "free -h"]
-draft: true
 ---
 
 "The server is slow" is one of the least specific problem reports there is, and guessing at the cause wastes the time when it matters most. This guide gives you a fixed order of checks for a slow Linux machine, explains what each number means, and shows how to tell which of the four basic resources (CPU, memory, disk, network) is actually the limit.
