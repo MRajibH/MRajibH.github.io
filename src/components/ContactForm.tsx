@@ -49,9 +49,9 @@ export function ContactForm() {
 
     return (
         <div className="max-w-xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-light mb-6 text-center">
+            <h1 className="font-display text-3xl md:text-4xl font-bold text-slate-light mb-6 text-center">
                 Get In Touch
-            </h2>
+            </h1>
             <p className="text-slate text-center mb-8">
                 Have a project in mind or want to collaborate? Send me a message below or email me directly at{" "}
                 <a href={`mailto:${contact.email}`} className="text-accent hover:underline">
@@ -71,7 +71,7 @@ export function ContactForm() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-white/10 text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-line text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
                         placeholder="Your Name"
                     />
                 </div>
@@ -87,7 +87,7 @@ export function ContactForm() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-white/10 text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-line text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors"
                         placeholder="your@email.com"
                     />
                 </div>
@@ -103,7 +103,7 @@ export function ContactForm() {
                         value={formData.message}
                         onChange={handleChange}
                         rows={5}
-                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-white/10 text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-none"
+                        className="w-full px-4 py-3 rounded-lg bg-navy-light/50 border border-line text-slate-light placeholder-slate/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-none"
                         placeholder="How can I help you?"
                     />
                 </div>

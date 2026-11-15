@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated from NEXT_PUBLIC_ADSENSE_CLIENT at build time
+/public/ads.txt

@@ -1,0 +1,7 @@
+[
+  { "slug": "self-hosted-llms", "name": "Self-hosted LLMs", "description": "Running language models on your own hardware" },
+  { "slug": "rag-and-agents", "name": "RAG and AI agents", "description": "Retrieval, tools and orchestration" },
+  { "slug": "linux", "name": "Linux and ISO builds", "description": "Packaging systems that install cleanly" },
+  { "slug": "devsecops", "name": "DevSecOps", "description": "Pipelines, containers and hardening" },
+  { "slug": "web", "name": "Web engineering", "description": "Building and shipping web applications" }
+]

@@ -3,7 +3,8 @@
 Plan for rebuilding rajib.uk from a one-page portfolio into a content site that Google AdSense
 can approve, hosted as a static site on Cloudflare Pages.
 
-Status: **plan approved, build not started.** Written 2026-11-15.
+Status: **site built 2026-11-15; no articles published yet.** The site is not ready for an
+AdSense application until the articles in section 7 are written and published.
 
 ## 1. Goal and honest expectations
 
@@ -156,3 +157,36 @@ Suggested pace: one article a week.
 ## Out of scope for the build
 
 Writing the articles, creating the AdSense account, and setting up Cloudflare Pages.
+
+## 9. How it works now (as built)
+
+**Publishing an article**
+1. Copy `content/blog/_template.md` to `content/blog/your-article-name.md`.
+2. Write it. Keep `draft: true` while working; `npm run dev` shows drafts with a "Draft" badge.
+3. Remove `draft: true`, run `npm run check:content`, then build and deploy.
+
+**Guards against low-value content** (all automatic)
+- `scripts/check-content.mjs` runs before every build and fails it if a published article has
+  fewer than 800 words of prose, fewer than three sections, placeholder text, a missing or
+  badly sized title or description, an unknown tag, or a duplicate title.
+- Drafts are never included in a production build.
+- The Blog link, "Latest articles" and the RSS link appear only once an article is published.
+  Until then the blog index is marked `noindex` and left out of the sitemap.
+- A topic page exists only for a topic with articles; with fewer than three it is `noindex`
+  and left out of the sitemap.
+
+**Ads**
+- Off until `NEXT_PUBLIC_ADSENSE_CLIENT` is set at build time (see `.env.example`). Without it
+  there is no AdSense script, no ad markup and no `ads.txt`.
+- With it: `public/ads.txt` is generated, and slots render only on article pages (after the
+  third section, at the end, and a desktop sidebar; the first and last need an article with
+  four or more sections) and on the blog index once it lists five or more articles.
+- Keep "Auto ads" off in AdSense, or Google will place ads on the ad-free pages.
+
+**Cloudflare Pages settings**: build command `npm run build`, output directory `out`.
+
+**Open decisions for Rajib**
+- `src/app/terms/page.tsx` states a content licence (articles copyrighted, code free to
+  reuse). Change it if you want different terms.
+- `content/blog/static-nextjs-blog-with-markdown.md` is a draft written during the build to
+  exercise the blog. Rewrite it in your own words before publishing, or delete it.
