@@ -3,6 +3,10 @@ title: "Secrets management for small teams: from .env files to a vault"
 description: "A staged path for handling passwords and API keys: stop leaks, encrypt secrets in Git with SOPS and age, deliver them safely, and know when a vault is worth it."
 date: 2026-11-15
 tags: [devsecops]
+art:
+  kind: flow
+  caption: "The stages of secrets handling, from a plain .env file to a central vault."
+  items: ["Plain .env file", "Leak scanning", "Encrypted in Git", "Central vault"]
 draft: true
 ---
 
@@ -12,7 +16,7 @@ Every application needs a handful of values that must stay private: a database p
 
 A secret is any value that grants access or proves identity: passwords, API keys and tokens, private keys, database connection strings that embed a password, webhook signing keys, session encryption keys. A useful test is to ask what happens if the value is posted publicly. If the answer is "someone could read our data, spend our money or impersonate us", it is a secret.
 
-Not everything in a configuration file qualifies. Hostnames, port numbers, feature flags and log levels are configuration. Keeping the two apart matters, because configuration can live in plain text in the repository, where it is easy to review, and only the short list of real secrets needs special handling.
+Hostnames, port numbers and feature flags are configuration, not secrets. They can stay in plain text in the repository, which leaves only a short list of values that need special handling.
 
 Secrets rarely leak through clever attacks. They leak through ordinary work:
 
@@ -20,7 +24,6 @@ Secrets rarely leak through clever attacks. They leak through ordinary work:
 - **Container images.** A `COPY . .` instruction puts the local `.env` into an image layer. Anyone who can pull the image can read every layer.
 - **Logs and error pages.** An application that prints its configuration at startup, or a framework debug page that dumps the environment, writes secrets wherever logs go.
 - **CI output.** A script that echoes a variable for debugging, or runs with command tracing enabled, prints secrets into build logs that many people can read.
-- **Chat, email and tickets.** A password pasted into a message is stored on someone else's servers, searchable, for as long as that service keeps history.
 - **Shell history.** A command such as `mysql -pSecretValue` saves the password in the history file.
 
 The stages below close these routes one at a time.
@@ -176,7 +179,7 @@ sops decrypt secrets/production.env
 Verify before committing that no plain value remains. Every data line should contain the `ENC[` marker:
 
 ```bash
-grep -vE '^(sops_|#|$)' secrets/production.env | grep -vc 'ENC\[' 
+grep -vE '^(sops_|#|$)' secrets/production.env | grep -vc 'ENC\['
 ```
 
 The command counts data lines without the marker and should print `0`.
@@ -226,14 +229,6 @@ However secrets are stored, the application eventually has to receive them, and 
 Files are the safer default for the most sensitive values, because access can be limited by file permissions and nothing prints a file's contents by accident. Docker Compose supports this directly: a secret declared in the Compose file is mounted into the container under `/run/secrets/`, only for the services that list it. Many official images accept a variable ending in `_FILE`, such as `POSTGRES_PASSWORD_FILE`, that names the file to read. The full Compose setup is in [Docker Compose in production](/blog/docker-compose-in-production/).
 
 Whichever channel you use, two rules apply. Do not bake secrets into images, whether through `ENV`, build arguments or copied files; an image is meant to be distributed, and its layers and build history are readable by anyone who can pull it. And do not log them: review what the application prints at startup and on errors.
-
-On the server itself, any decrypted file should belong to the service account and nobody else:
-
-```bash
-sudo chown shop:shop /opt/shop/secrets/db_password.txt
-sudo chmod 600 /opt/shop/secrets/db_password.txt
-stat -c '%U:%G %a %n' /opt/shop/secrets/db_password.txt
-```
 
 ## Stage three: when a vault is worth running
 
@@ -289,10 +284,6 @@ Verify a rotation the same way each time: the application works with the new val
 
 **Secrets in command-line arguments.** Arguments are visible to other users in the process list and stored in shell history. Pass secrets through files or the environment instead.
 
-**Secrets in the front end.** Anything shipped to a browser or a mobile app is public, whatever the variable is called. Keys that must stay private belong on a server.
-
-**The same value everywhere.** A reused password turns one leak into several. Generate a distinct random value for each use, for example with `openssl rand -base64 32`.
-
 ## Frequently asked questions
 
 ### Is it really safe to commit encrypted secrets to a public repository?
@@ -306,10 +297,6 @@ They are acceptable and widely used, but they leak more easily than files: child
 ### How often should secrets be rotated?
 
 There is no interval that suits every case. Rotate immediately after any suspected exposure and whenever someone with access leaves. Beyond that, pick a schedule you will actually keep, and put the effort into making rotation easy, since an easy rotation gets done.
-
-### What should happen to secrets used only in CI?
-
-Store them in the CI platform's secret store, scoped to the repository and, where the platform supports it, to the deployment environment. Give each one the minimum permissions it needs, and never print them in job output.
 
 ### Do small teams need Vault?
 

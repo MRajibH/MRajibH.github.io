@@ -7,10 +7,6 @@ art:
   kind: flow
   caption: "MCP is the connection between an AI application and the tools it can use."
   items: ["AI application", "MCP client", "MCP server", "Tools and data"]
-art:
-  kind: flow
-  caption: "A host application reaches tools and data through an MCP client and server."
-  items: ["Host and model", "MCP client", "MCP server", "Tools and data"]
 draft: true
 ---
 
@@ -22,7 +18,7 @@ Tool calling itself, the loop in which a model asks for a function and reads the
 
 Suppose you have three AI applications and four systems you want them to reach, such as a ticket tracker, a database, a documentation folder and a monitoring API. Without a standard, that is up to twelve integrations, each written against a different plug-in interface. With a standard protocol in the middle, it is three clients and four servers, and every new server works with every existing application.
 
-The [specification](https://modelcontextprotocol.io/specification/latest) compares this to the Language Server Protocol, which did the same thing for programming-language support in editors. MCP defines three roles:
+The [specification](https://modelcontextprotocol.io/specification/latest) defines three roles:
 
 - **Host**: the AI application the person uses, such as a desktop assistant or an editor. The host owns the language model and the conversation.
 - **Client**: a connector inside the host. The host creates one client for each server it talks to.
@@ -250,7 +246,7 @@ The MCP Inspector is a browser-based tool for calling a server by hand. The SDK 
 mcp dev server.py
 ```
 
-Use it to confirm that the generated schemas and descriptions read the way you intended, since those are what a model will see.
+Use it to check the generated schemas and descriptions, since those are what a model will see.
 
 ### Connect a real host
 
@@ -311,8 +307,6 @@ An MCP server is code that a language model can trigger, so it deserves the same
 **Relative paths in host configuration.** The host launches the server from its own working directory. Use absolute paths, and resolve data paths from `__file__` as the example does.
 
 **Raising generic exceptions for expected failures.** If a lookup fails with a bare `KeyError`, the model receives a generic failure with no detail. Raise `ToolError` with a message that says what to do differently.
-
-**Keeping state in module variables between calls.** Under the stateless revision, consecutive requests may reach different processes. Return an explicit handle and accept it as an argument.
 
 **The server does not appear in the host.** Run the configured command in a terminal. A working stdio server starts and waits silently for input; a traceback or an immediate exit is the real error. Restart the host after changing its configuration.
 

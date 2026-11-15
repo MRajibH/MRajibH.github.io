@@ -91,13 +91,14 @@ This function walks a Markdown document and yields each section together with it
 import re
 
 HEADING = re.compile(r"^(#{1,6})\s+(.*)$")
+FENCE = "`" * 3   # the marker that opens and closes a fenced code block
 
 
 def split_by_headings(markdown):
     """Yield (heading_path, body) for each section of a Markdown document."""
     path, body, in_code = [], [], False
     for line in markdown.splitlines():
-        if line.lstrip().startswith("```"):
+        if line.lstrip().startswith(FENCE):
             in_code = not in_code
         match = None if in_code else HEADING.match(line)
         if match:

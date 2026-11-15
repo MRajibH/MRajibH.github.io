@@ -7,10 +7,6 @@ art:
   kind: flow
   caption: "The loop an agent runs: the model asks for a tool, your code runs it, the model continues."
   items: ["Request", "Model", "Tool call", "Tool result", "Answer"]
-art:
-  kind: flow
-  caption: "The agent loop: the model requests a tool, your code runs it and returns the result."
-  items: ["User question", "Model picks a tool", "Code runs the tool", "Result goes back", "Final answer"]
 draft: true
 ---
 
