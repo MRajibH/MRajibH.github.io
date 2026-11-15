@@ -3,6 +3,10 @@ title: "How to evaluate a RAG system: metrics, test sets and tooling"
 description: "Build a test set, measure retrieval with recall and MRR, score answers for faithfulness with an LLM judge, and run it all as a regression check."
 date: 2026-11-15
 tags: [rag-and-agents]
+art:
+  kind: flow
+  caption: "An evaluation run scores retrieval and the final answer separately."
+  items: ["Test questions", "Retrieve", "Generate", "Score"]
 draft: true
 ---
 

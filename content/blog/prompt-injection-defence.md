@@ -3,6 +3,10 @@ title: "Prompt injection: how it works and how to defend your app"
 description: "How direct and indirect prompt injection work, why filters alone fail, and the layered controls that limit what an injected LLM app can do."
 date: 2026-11-15
 tags: [rag-and-agents, devsecops]
+art:
+  kind: layers
+  caption: "No single defence is enough, so they are stacked."
+  items: ["Keep untrusted text separate", "Least-privilege tools", "Human approval for risky actions", "Check and monitor output"]
 draft: true
 ---
 

@@ -233,3 +233,31 @@ body {
 
   .type-line { width: 100%; }
 }
+
+/* ---------- Article artwork ---------- */
+@keyframes art-step {
+  0%, 100% { border-color: rgb(var(--line)); box-shadow: none; }
+  8%, 22% {
+    border-color: rgb(var(--accent));
+    box-shadow: 0 0 0 1px rgb(var(--accent) / 0.5), 0 10px 30px -14px rgb(var(--accent));
+  }
+  40% { border-color: rgb(var(--line)); box-shadow: none; }
+}
+@keyframes art-line {
+  0%, 100% { background: transparent; }
+  8%, 22% { background: rgb(92 192 255 / 0.16); }
+  40% { background: transparent; }
+}
+.art-step { animation: art-step var(--art-cycle, 4s) ease-in-out var(--art-delay, 0s) infinite; }
+.art-line { animation: art-line var(--art-cycle, 4s) ease-in-out var(--art-delay, 0s) infinite; }
+.art-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgb(var(--muted) / 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000, transparent);
+  mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000, transparent);
+}
+.art-frame > * { position: relative; }

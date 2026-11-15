@@ -3,6 +3,10 @@ title: "Deploy a static Next.js site to Cloudflare Pages, step by step"
 description: "Connect a Git repository to Cloudflare Pages, set the build for a Next.js static export, add a custom domain, headers and redirects, and fix failed builds."
 date: 2026-11-15
 tags: [web]
+art:
+  kind: flow
+  caption: "A push to the repository becomes a live site with no manual steps."
+  items: ["git push", "Cloudflare builds the site", "Static files deployed", "Served worldwide"]
 draft: true
 ---
 

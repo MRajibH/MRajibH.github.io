@@ -12,6 +12,7 @@ import {
 } from "@/lib/posts";
 import { PostCard } from "@/components/PostList";
 import { AdSlot } from "@/components/AdSlot";
+import { ArticleArt } from "@/components/ArticleArt";
 import { ShareButtons } from "@/components/ShareButtons";
 
 type Props = { params: { slug: string } };
@@ -104,6 +105,8 @@ export default async function ArticlePage({ params }: Props) {
             <span className="text-slate"> · Updated {formatDate(post.updated)}</span>
           )}
         </p>
+
+        {post.art && <ArticleArt art={post.art} />}
 
         <div className="prose-article text-slate-light" dangerouslySetInnerHTML={{ __html: firstPart }} />
         {isLong && (

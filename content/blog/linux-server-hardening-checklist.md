@@ -3,6 +3,10 @@ title: "Linux server hardening: a practical checklist with commands"
 description: "A step-by-step hardening checklist for Debian, Ubuntu, RHEL and Rocky servers: updates, accounts, SSH, firewall, services, sysctl and auditing."
 date: 2026-11-15
 tags: [linux, devsecops]
+art:
+  kind: layers
+  caption: "Hardening is a set of layers, each closing off a different route in."
+  items: ["Updates applied", "SSH keys only", "Firewall", "Least privilege", "Logs and audit"]
 draft: true
 ---
 

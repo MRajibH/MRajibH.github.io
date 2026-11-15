@@ -3,6 +3,10 @@ title: "Linux performance troubleshooting: what to check first"
 description: "A repeatable first-ten-minutes routine for a slow Linux server: load, CPU, memory, disk and network checks, and how to read what the tools print."
 date: 2026-11-15
 tags: [linux]
+art:
+  kind: terminal
+  caption: "The first commands to run on a slow server, before changing anything."
+  items: ["uptime", "vmstat 1 5", "iostat -xz 1 3", "free -h"]
 draft: true
 ---
 

@@ -3,6 +3,10 @@ title: "Securing a self-hosted LLM API: auth, TLS and rate limits"
 description: "Protect a self-hosted LLM endpoint in layers: private binding, an nginx reverse proxy with TLS, per-client API keys, route allowlists and rate limits."
 date: 2026-11-15
 tags: [self-hosted-llms, devsecops]
+art:
+  kind: layers
+  caption: "Each layer stops a different kind of unwanted request before it reaches the model."
+  items: ["Reverse proxy with TLS", "API key per client", "Rate limits", "Model server on localhost"]
 draft: true
 ---
 

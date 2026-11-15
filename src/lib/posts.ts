@@ -10,6 +10,22 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import { topics, type Topic } from "./site";
 
+export type Art = {
+  kind: "flow" | "layers" | "compare" | "terminal";
+  caption: string;
+  items: string[];
+};
+
+const ART_KINDS = ["flow", "layers", "compare", "terminal"];
+
+function parseArt(value: unknown): Art | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const { kind, caption, items } = value as Record<string, unknown>;
+  if (typeof kind !== "string" || !ART_KINDS.includes(kind)) return undefined;
+  if (!Array.isArray(items) || items.length < 2) return undefined;
+  return { kind: kind as Art["kind"], caption: String(caption ?? ""), items: items.map(String) };
+}
+
 export type Post = {
   slug: string;
   title: string;
@@ -18,6 +34,7 @@ export type Post = {
   updated?: string;
   tags: string[];
   draft: boolean;
+  art?: Art;
   content: string;
   minutes: number;
 };
@@ -52,6 +69,7 @@ export function getAllPosts(): Post[] {
         updated: data.updated ? toIso(data.updated) : undefined,
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         draft: data.draft === true,
+        art: parseArt(data.art),
         content,
         minutes: Math.max(1, Math.round(words / 220)),
       };

@@ -62,6 +62,14 @@ for (const file of files) {
   const leftover = (title + "\n" + description + "\n" + prose).match(PLACEHOLDER);
   if (leftover) fail(`contains placeholder text: "${leftover[0]}"`);
   if (/^# /m.test(prose)) fail('do not use a "# " heading in the body; the title is the page heading');
+  // Every article carries its own diagram (see src/components/ArticleArt.tsx).
+  const art = data.art;
+  if (!art || typeof art !== "object") fail("missing `art:` (the illustration at the top of the article)");
+  else {
+    if (!["flow", "layers", "compare", "terminal"].includes(art.kind)) fail(`art.kind "${art.kind}" is not flow, layers, compare or terminal`);
+    if (!Array.isArray(art.items) || art.items.length < 2 || art.items.length > 5) fail("art.items needs 2 to 5 entries");
+    if (!art.caption || String(art.caption).length < 15) fail("art.caption must describe the illustration (15+ characters)");
+  }
   const key = title.trim().toLowerCase();
   if (seenTitles.has(key)) fail(`same title as ${seenTitles.get(key)}`);
   seenTitles.set(key, file);

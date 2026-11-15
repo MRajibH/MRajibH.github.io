@@ -3,6 +3,10 @@ title: "How this site is built: a static Next.js blog with Markdown"
 description: "The design of this site: Next.js static export, Markdown articles rendered at build time, a flash-free theme switch and build checks for thin pages."
 date: 2026-11-15
 tags: [web]
+art:
+  kind: flow
+  caption: "Every page is produced once at build time and then served as a file."
+  items: ["Markdown files", "Build", "Static HTML", "File host"]
 draft: true
 ---
 

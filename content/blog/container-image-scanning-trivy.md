@@ -3,6 +3,10 @@ title: "Container image scanning with Trivy: find and fix vulnerabilities"
 description: "Scan container images with Trivy, read the report, fix what matters, record accepted risks with expiry dates, and fail CI builds on fixable serious issues."
 date: 2026-11-15
 tags: [devsecops]
+art:
+  kind: flow
+  caption: "Scanning fits into the build as a gate before an image is shipped."
+  items: ["Build image", "Scan with Trivy", "Fix or accept findings", "Ship"]
 draft: true
 ---
 

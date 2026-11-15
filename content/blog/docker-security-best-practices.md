@@ -3,6 +3,10 @@ title: "Docker security best practices: hardening containers properly"
 description: "Harden Docker at runtime: non-root users, dropped capabilities, read-only filesystems, resource limits, safer networking and daemon settings, with checks."
 date: 2026-11-15
 tags: [devsecops]
+art:
+  kind: layers
+  caption: "Runtime limits that reduce what a compromised container can do."
+  items: ["Non-root user", "Dropped capabilities", "Read-only filesystem", "Resource limits"]
 draft: true
 ---
 

@@ -3,6 +3,10 @@ title: "One API for every model: setting up a LiteLLM gateway"
 description: "Set up a LiteLLM proxy in front of vLLM, Ollama and hosted models: config file, virtual keys, per-key limits, load balancing and fallbacks."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: flow
+  caption: "One gateway gives every application the same API for every model."
+  items: ["Your applications", "LiteLLM gateway", "Local and cloud models"]
 draft: true
 ---
 

@@ -3,6 +3,10 @@ title: "Hybrid search and reranking: better retrieval for RAG"
 description: "Combine keyword and vector search with reciprocal rank fusion, then rerank with a cross-encoder, using PostgreSQL, Qdrant and Python examples."
 date: 2026-11-15
 tags: [rag-and-agents]
+art:
+  kind: flow
+  caption: "Keyword and vector results are merged, then reordered by a reranker."
+  items: ["Query", "Keyword + vector search", "Fuse results", "Rerank", "Top results"]
 draft: true
 ---
 

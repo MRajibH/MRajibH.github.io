@@ -3,6 +3,10 @@ title: "Serving LLMs in production with vLLM: a practical guide"
 description: "Deploy vLLM as an OpenAI-compatible server: Docker setup, the flags that control memory and concurrency, metrics to watch and mistakes to avoid."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: flow
+  caption: "vLLM sits between many clients and the GPU and batches their requests."
+  items: ["Many clients", "OpenAI-compatible API", "vLLM batching", "GPU"]
 draft: true
 ---
 

@@ -3,6 +3,10 @@ title: "Dockerfile best practices: smaller, faster, safer images"
 description: "Write Dockerfiles that build quickly and ship small images: layer ordering, build cache, multi-stage builds, base image choice and build secrets."
 date: 2026-11-15
 tags: [devsecops]
+art:
+  kind: flow
+  caption: "A multi-stage build keeps compilers and build tools out of the final image."
+  items: ["Build stage", "Copy the result", "Small runtime image"]
 draft: true
 ---
 

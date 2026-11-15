@@ -3,6 +3,10 @@ title: "Ollama vs llama.cpp vs vLLM: which should you self-host with?"
 description: "A practical comparison of Ollama, llama.cpp and vLLM: how each loads models, uses memory and handles concurrency, with commands to try all three."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: compare
+  caption: "Three ways to serve a model yourself, and what each is best at."
+  items: ["Ollama | Easiest to set up", "llama.cpp | Most control", "vLLM | Built for many users"]
 draft: true
 ---
 

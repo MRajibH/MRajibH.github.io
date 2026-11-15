@@ -3,6 +3,10 @@ title: "Self-host a private ChatGPT with Open WebUI and Ollama"
 description: "Deploy Open WebUI with Ollama using Docker Compose, set up accounts, add documents, put it behind HTTPS and keep it backed up and updated."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: flow
+  caption: "A chat request stays on your own machine from browser to model."
+  items: ["Your browser", "Open WebUI", "Ollama", "Local model"]
 draft: true
 ---
 

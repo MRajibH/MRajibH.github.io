@@ -3,6 +3,10 @@ title: "How to build a custom Debian ISO with live-build"
 description: "Build a bootable, installable Debian ISO with live-build: configuration, package lists, files, hooks, the installer, testing in QEMU and rebuilds."
 date: 2026-11-15
 tags: [linux]
+art:
+  kind: terminal
+  caption: "live-build turns a configuration directory into a bootable ISO."
+  items: ["sudo apt install live-build", "lb config", "sudo lb build"]
 draft: true
 ---
 

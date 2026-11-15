@@ -3,6 +3,10 @@ title: "How to run an LLM locally with Ollama: a complete setup guide"
 description: "Install Ollama on Linux, pull a model, call its API, tune context length and memory, run it as a hardened service and fix the usual problems."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: terminal
+  caption: "Three commands take you from a bare machine to a model answering locally."
+  items: ["curl -fsSL https://ollama.com/install.sh | sh", "ollama pull llama3.2", "ollama run llama3.2"]
 draft: true
 ---
 

@@ -3,6 +3,10 @@ title: "Hardware for local LLMs: GPU, VRAM and RAM explained"
 description: "How to size hardware for local LLMs: estimate memory from parameter count and quantization, and decide between GPU, CPU and Apple Silicon."
 date: 2026-11-15
 tags: [self-hosted-llms]
+art:
+  kind: layers
+  caption: "What each part of the machine does when you run a model locally."
+  items: ["GPU memory (VRAM): holds the model", "System RAM: overflow and CPU inference", "CPU: runs what the GPU cannot", "Disk: stores the model files"]
 draft: true
 ---
 

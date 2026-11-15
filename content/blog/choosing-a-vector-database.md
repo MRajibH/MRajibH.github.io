@@ -3,6 +3,10 @@ title: "pgvector vs Qdrant vs Chroma: choosing a vector database"
 description: "Compare pgvector, Qdrant and Chroma on indexing, filtering, operations and scale, with working setup commands and queries for each one."
 date: 2026-11-15
 tags: [rag-and-agents]
+art:
+  kind: compare
+  caption: "Three vector stores and where each one lives."
+  items: ["pgvector | Inside PostgreSQL", "Qdrant | Dedicated server", "Chroma | Embedded, quick start"]
 draft: true
 ---
 

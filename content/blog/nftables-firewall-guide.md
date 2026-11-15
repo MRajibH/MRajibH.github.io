@@ -3,6 +3,10 @@ title: "nftables for beginners: a practical Linux firewall guide"
 description: "Build a default-deny nftables firewall for a Linux server: tables, chains, sets, rate limits, safe testing over SSH and making rules persistent."
 date: 2026-11-15
 tags: [linux, devsecops]
+art:
+  kind: flow
+  caption: "Every incoming packet is checked against the rules of the input chain."
+  items: ["Incoming packet", "input chain", "Rules in order", "Accept or drop"]
 draft: true
 ---
 

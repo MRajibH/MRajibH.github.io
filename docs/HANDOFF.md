@@ -65,7 +65,8 @@ Web
 ## Rules for every guide
 
 Front matter: `title` (exact, 15-70 chars), `description` (50-160 chars), `date: 2026-11-15`,
-`tags`, `draft: true`. Format reference: `content/blog/_template.md`.
+`tags`, `art` (the animated diagram at the top of the article: kind `flow`, `layers`,
+`compare` or `terminal`, a caption and 2-5 items taken from the article itself), `draft: true`. Format reference: `content/blog/_template.md`.
 
 - 1,800-2,500 words of prose (code blocks not counted), at least 6 `## ` sections, no `# `
   heading. Most useful material in the first three sections.

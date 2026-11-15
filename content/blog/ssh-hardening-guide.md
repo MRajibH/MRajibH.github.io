@@ -3,6 +3,10 @@ title: "SSH hardening: keys, sshd_config and fail2ban done properly"
 description: "Set up SSH keys, harden sshd_config with a drop-in file, restrict who can log in and add fail2ban, with checks that prevent locking yourself out."
 date: 2026-11-15
 tags: [linux, devsecops]
+art:
+  kind: terminal
+  caption: "Create a key, install it on the server, and test the config before reloading."
+  items: ["ssh-keygen -t ed25519", "ssh-copy-id -i ~/.ssh/id_ed25519.pub alice@server.example.com", "sudo sshd -t"]
 draft: true
 ---
 

@@ -4,6 +4,13 @@ description: "One or two sentences, 50 to 160 characters, saying what the reader
 date: 2026-01-31
 # updated: 2026-02-15
 tags: [linux]          # one or more slugs from content/topics.json
+# The animated illustration shown at the top of the article. kind is one of:
+#   flow     - steps left to right        layers  - stacked layers
+#   compare  - "Name | short note" cards  terminal - command lines
+art:
+  kind: flow
+  caption: "One sentence saying what the diagram shows."
+  items: ["First step", "Second step", "Third step"]
 draft: true            # remove this line (or set false) only when the article is finished
 ---
 

@@ -3,6 +3,10 @@ title: "Writing systemd services: unit files, restarts and sandboxing"
 description: "Write a systemd service unit for your own program: service types, restart policy, dependencies, credentials, sandboxing options and debugging."
 date: 2026-11-15
 tags: [linux]
+art:
+  kind: terminal
+  caption: "Load the unit, start it now and at boot, then check it is running."
+  items: ["sudo systemctl daemon-reload", "sudo systemctl enable --now notes-api.service", "systemctl status notes-api.service"]
 draft: true
 ---
 
