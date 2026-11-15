@@ -159,7 +159,7 @@ Logins and conversations should not cross a network unencrypted, and browsers re
 
 Open WebUI streams responses and uses WebSocket connections, so the proxy must pass those through. Caddy handles both by default and also obtains and renews certificates automatically, which makes its configuration short. A `Caddyfile` for a server with a public DNS name:
 
-```
+```caddyfile
 chat.example.com {
     reverse_proxy 127.0.0.1:3000
 }
