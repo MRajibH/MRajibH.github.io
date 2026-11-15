@@ -26,7 +26,18 @@ import {
   SiRockylinux,
   SiCentos,
   SiFreebsd,
+  SiCplusplus,
+  SiLaravel,
+  SiMongodb,
+  SiRedis,
+  SiKalilinux,
 } from "react-icons/si";
+import {
+  HiOutlineSparkles,
+  HiOutlineShieldCheck,
+  HiOutlineCommandLine,
+  HiOutlineServerStack,
+} from "react-icons/hi2";
 import { IconType } from "react-icons";
 
 const skillIconMap: Record<string, IconType> = {
@@ -58,9 +69,20 @@ const skillIconMap: Record<string, IconType> = {
   "LLM integration": SiOpenai,
   "REST APIs": SiSwagger,
   "CI/CD": SiJenkins,
+  "C/C++": SiCplusplus,
+  Laravel: SiLaravel,
+  MongoDB: SiMongodb,
+  Redis: SiRedis,
+  "Kali Linux": SiKalilinux,
+  "RAG pipelines": HiOutlineSparkles,
+  "AI agents": HiOutlineSparkles,
+  "Self-hosted LLMs": HiOutlineServerStack,
+  "Custom ISO builds": HiOutlineServerStack,
+  "Vulnerability assessment": HiOutlineShieldCheck,
+  "Penetration testing": HiOutlineShieldCheck,
 };
 
-const defaultIcon = SiJavascript;
+const defaultIcon = HiOutlineCommandLine;
 
 export function SkillIcon({ name, className = "" }: { name: string; className?: string }) {
   const Icon = skillIconMap[name] ?? defaultIcon;

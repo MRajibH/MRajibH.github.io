@@ -2,16 +2,19 @@ import Image, { type StaticImageData } from "next/image";
 import {
   contact,
   profiles,
+  tagline,
   summary,
   skills,
   experience,
   education,
+  certifications,
   projects,
 } from "@/data/resume";
 import { AnimateIn } from "@/components/AnimateIn";
 import { SkillIcon } from "@/components/SkillIcon";
 import { ProjectIcon } from "@/components/ProjectIcon";
 import { ProfileSocialIcon } from "@/components/ProfileSocialIcon";
+import { Nav } from "@/components/Nav";
 import { CodingBackground } from "@/components/CodingBackground";
 import { ContactForm } from "@/components/ContactForm";
 import profileImg from "./profile.jpg";
@@ -22,36 +25,6 @@ const educationLogos: Record<string, StaticImageData> = {
   ewu: universityLogo,
   ndc: ndcLogo,
 };
-
-function Nav() {
-  const links = [
-    { label: "Summary", href: "#summary" },
-    { label: "Skills", href: "#skills" },
-    { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ];
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-navy/90 backdrop-blur border-b border-white/5">
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold">
-          <span className="text-accent">Rajib</span>
-
-        </a>
-        <ul className="hidden md:flex gap-8 text-slate text-sm">
-          {links.map(({ label, href }) => (
-            <li key={href}>
-              <a href={href} className="hover:text-accent transition-colors">
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
-  );
-}
 
 function Hero() {
   return (
@@ -66,10 +39,10 @@ function Hero() {
         </h1>
         <div className="opacity-0 animate-fade animate-delay-3 mb-8">
           <h2 className="text-xl md:text-2xl text-slate font-mono typing-effect">
-            Full Stack Software Engineer
+            Senior Software Engineer
           </h2>
           <p className="text-slate text-lg max-w-xl mt-4 leading-relaxed">
-            {summary}
+            {tagline}
           </p>
         </div>
         <div className="flex flex-wrap gap-4 opacity-0 animate-fade animate-delay-4">
@@ -84,6 +57,13 @@ function Hero() {
             className="px-6 py-3 border border-slate/50 text-slate-light rounded hover:border-accent hover:text-accent transition-colors"
           >
             View My Work
+          </a>
+          <a
+            href={contact.resumeFile}
+            download
+            className="px-6 py-3 border border-slate/50 text-slate-light rounded hover:border-accent hover:text-accent transition-colors"
+          >
+            Download Resume
           </a>
         </div>
       </div>
@@ -105,15 +85,19 @@ function Hero() {
 
 function Summary() {
   return (
-    <section id="summary" className="section-padding border-t border-white/5">
+    <section id="about" className="section-padding border-t border-white/5">
       <AnimateIn>
         <h2 className="text-2xl font-bold text-slate-light mb-4 flex items-center gap-2">
           <span className="w-8 h-1 rounded bg-gradient-to-r from-accent to-transparent" />
-          Summary
+          About
         </h2>
-        <p className="text-slate max-w-2xl leading-relaxed">
-          {summary}
-        </p>
+        <div className="space-y-4 max-w-3xl">
+          {summary.map((paragraph) => (
+            <p key={paragraph} className="text-slate leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </AnimateIn>
     </section>
   );
@@ -277,31 +261,34 @@ function ProjectsSection() {
   );
 }
 
-function ProfilesSection() {
+function CertificationsSection() {
   return (
-    <section className="section-padding border-t border-white/5 relative z-10">
+    <section id="certifications" className="section-padding border-t border-white/5 relative z-10">
       <AnimateIn>
-        <h2 className="text-2xl font-bold text-slate-light mb-6 flex items-center gap-2">
+        <h2 className="text-2xl font-bold text-slate-light mb-8 flex items-center gap-2">
           <span className="w-8 h-0.5 bg-accent" />
-          Profiles
+          Licenses &amp; Certifications
         </h2>
-        <ul className="space-y-3">
-          {profiles.map(({ label, url, icon }) => (
-            <li key={label}>
+        <div className="space-y-6">
+          {certifications.map((cert) => (
+            <div key={cert.name} className="glass-card p-6 rounded-xl">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-1">
+                <h3 className="text-lg font-bold text-slate-light">{cert.name}</h3>
+                <span className="text-slate text-sm font-mono">Issued {cert.issued}</span>
+              </div>
+              <p className="text-accent text-sm mb-4">{cert.issuer}</p>
+              <p className="text-slate text-sm leading-relaxed mb-4">{cert.description}</p>
               <a
-                href={url}
+                href={cert.credentialUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate hover:text-accent transition-colors flex items-center gap-3 group"
+                className="text-accent text-sm font-medium hover:underline"
               >
-                <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-navy-light/60 text-accent flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <ProfileSocialIcon icon={icon} className="w-5 h-5" moving />
-                </span>
-                <span className="min-w-0 truncate">{label}: {url}</span>
+                Verify credential
               </a>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </AnimateIn>
     </section>
   );
@@ -319,15 +306,16 @@ function ContactSection() {
 
 function Footer() {
   const companyLinks = [
-    { label: "About", href: "#summary" },
+    { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
-    { label: "Education", href: "#education" },
     { label: "Projects", href: "#projects" },
+    { label: "Education", href: "#education" },
+    { label: "Contact", href: "#contact" },
   ];
   return (
     <footer className="border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6 py-12 md:px-12 lg:px-24">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
+        <div className="grid md:grid-cols-2 gap-10 mb-10">
           <div>
             <p className="text-xl font-bold mb-3">
               <span className="text-accent">Rajib</span>
@@ -365,30 +353,9 @@ function Footer() {
               ))}
             </ul>
           </div>
-          <div>
-            <h4 className="font-semibold text-slate-light mb-3">Connect</h4>
-            <div className="flex flex-wrap gap-2">
-              {profiles.map(({ label, url, icon }) => (
-                <a
-                  key={label}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate text-sm hover:text-accent flex items-center gap-2"
-                >
-                  <ProfileSocialIcon icon={icon} className="w-4 h-4" moving={false} />
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
         </div>
         <div className="pt-6 border-t border-white/5 flex flex-wrap justify-between items-center gap-4 text-slate text-sm">
-          <span>&copy; {new Date().getFullYear()} Muhammad Rajib Hawlader. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-accent">Privacy Policy</a>
-            <a href="#" className="hover:text-accent">Terms of Service</a>
-          </div>
+          <span>&copy; {new Date().getFullYear()} Muhammad Rajib Hawlader</span>
         </div>
       </div>
     </footer>
@@ -406,12 +373,12 @@ export default function Home() {
           <Summary />
           <SkillsSection />
           <ExperienceSection />
-          <EducationSection />
           <ProjectsSection />
-          <ProfilesSection />
+          <EducationSection />
+          <CertificationsSection />
           <ContactSection />
-          <Footer />
         </main>
+        <Footer />
       </div>
     </div>
   );

@@ -13,9 +13,29 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+const title = "Muhammad Rajib Hawlader | Senior Software Engineer";
+const description =
+  "Senior Software Engineer building secure connectivity, network-management and AI-enabled products. Python, JavaScript, DevSecOps, LLM integration.";
+
 export const metadata: Metadata = {
-  title: "Muhammad Rajib Hawlader | Software Engineer",
-  description: "Software Engineer - Python, JavaScript, DevSecOps. Building secure, intelligent systems.",
+  metadataBase: new URL("https://rajib.uk"),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: "/",
+    siteName: "rajib.uk",
+    title,
+    description,
+    images: [{ url: "/profile.jpg", width: 240, height: 240, alt: "Muhammad Rajib Hawlader" }],
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+    images: ["/profile.jpg"],
+  },
 };
 
 export default function RootLayout({

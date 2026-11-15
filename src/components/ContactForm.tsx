@@ -26,18 +26,17 @@ export function ContactForm() {
             submitData.append("subject", `New Message from ${formData.name}`);
             submitData.append("message", formData.message);
 
-            const response = await fetch(ENDPOINT, {
+            // The mail endpoint sends no CORS headers, so the request has to be
+            // "no-cors" and its response cannot be read. A network failure still
+            // throws and lands in the catch below; anything else is reported as
+            // "submitted" rather than as a confirmed delivery.
+            await fetch(ENDPOINT, {
                 method: "POST",
                 body: submitData,
                 mode: "no-cors",
             });
-
-            if (response.ok || response.type === "opaque") {
-                setStatus("success");
-                setFormData({ name: "", email: "", message: "" });
-            } else {
-                setStatus("error");
-            }
+            setStatus("success");
+            setFormData({ name: "", email: "", message: "" });
         } catch (error) {
             console.error("Submission error:", error);
             setStatus("error");
@@ -123,7 +122,7 @@ export function ContactForm() {
                         </>
                     ) : status === "success" ? (
                         <>
-                            <FiCheckCircle /> Message Sent!
+                            <FiCheckCircle /> Message Submitted
                         </>
                     ) : (
                         <>
@@ -132,8 +131,17 @@ export function ContactForm() {
                     )}
                 </button>
 
+                {status === "success" && (
+                    <p className="text-slate text-sm mt-2 text-center" role="status">
+                        Thanks. If you don&apos;t hear back within a few days, please email me directly at{" "}
+                        <a href={`mailto:${contact.email}`} className="text-accent hover:underline">
+                            {contact.email}
+                        </a>.
+                    </p>
+                )}
+
                 {status === "error" && (
-                    <div className="flex items-center gap-2 text-red-400 text-sm mt-2 justify-center">
+                    <div className="flex items-center gap-2 text-red-400 text-sm mt-2 justify-center" role="alert">
                         <FiAlertCircle />
                         <span>Something went wrong. Please try again or email directly.</span>
                     </div>
