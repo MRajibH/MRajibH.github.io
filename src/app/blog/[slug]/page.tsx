@@ -13,6 +13,7 @@ import {
 import { PostCard } from "@/components/PostList";
 import { AdSlot } from "@/components/AdSlot";
 import { ArticleArt } from "@/components/ArticleArt";
+import { CodeCopy } from "@/components/CodeCopy";
 import { ShareButtons } from "@/components/ShareButtons";
 
 type Props = { params: { slug: string } };
@@ -107,6 +108,7 @@ export default async function ArticlePage({ params }: Props) {
         </p>
 
         {post.art && <ArticleArt art={post.art} />}
+        <CodeCopy />
 
         <div className="prose-article text-slate-light" dangerouslySetInnerHTML={{ __html: firstPart }} />
         {isLong && (

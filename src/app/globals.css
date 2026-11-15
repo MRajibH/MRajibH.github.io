@@ -189,17 +189,62 @@ body {
   background: rgb(var(--surface));
   border: 1px solid rgb(var(--line));
 }
+/* Code blocks: frame, header with language and copy button. Dark in both themes. */
+.prose-article .code-block {
+  border-radius: 12px;
+  border: 1px solid rgb(var(--line));
+  background: rgb(var(--code-bg));
+  overflow: hidden;
+}
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0.4rem 0.35rem 1rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  background: rgb(255 255 255 / 0.03);
+}
+.code-lang {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: #9fb0c8;
+}
+.code-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0 0.7rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #c5d1e3;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.code-copy:hover { background: rgb(255 255 255 / 0.08); color: #ffffff; }
+.code-copy:focus-visible { outline: 2px solid #5cc0ff; outline-offset: 1px; }
+.code-copy .code-icon-done { display: none; }
+.code-copy[data-state="copied"] { color: #8fd6a4; border-color: rgb(143 214 164 / 0.35); }
+.code-copy[data-state="copied"] .code-icon-copy { display: none; }
+.code-copy[data-state="copied"] .code-icon-done { display: block; }
+.code-copy[data-state="failed"] { color: #f5b971; }
 .prose-article pre {
+  margin: 0;
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: 0.875rem;
   line-height: 1.7;
-  padding: 1.1rem 1.3rem;
-  border-radius: 12px;
-  background: rgb(var(--code-bg));
-  border: 1px solid rgb(var(--line));
+  padding: 1rem 1.25rem 1.1rem;
   color: #e6edf7;
   overflow-x: auto;
+  tab-size: 2;
 }
+.prose-article pre code { font-family: inherit; }
 .prose-article .table-wrap { overflow-x: auto; }
 .prose-article table { width: 100%; border-collapse: collapse; font-size: 1rem; }
 .prose-article th,
@@ -211,13 +256,24 @@ body {
 .prose-article th { background: rgb(var(--surface)); }
 .prose-article img { border-radius: 12px; }
 
-/* Code tokens: the code block is dark in both themes. */
-.hljs-comment, .hljs-quote { color: #9fb0c8; }
-.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-type { color: #a99bff; }
-.hljs-string, .hljs-attr, .hljs-template-variable { color: #8fd6a4; }
-.hljs-number, .hljs-literal, .hljs-symbol { color: #f5b971; }
-.hljs-title, .hljs-section, .hljs-name, .hljs-function { color: #5cc0ff; }
-.hljs-variable, .hljs-params { color: #e6edf7; }
+/* Code tokens (highlight.js classes). The code block is dark in both themes. */
+.hljs-comment, .hljs-quote { color: #8b9bb4; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-doctag, .hljs-template-tag { color: #c4a7ff; }
+.hljs-built_in, .hljs-type, .hljs-class .hljs-title, .hljs-title.class_ { color: #7dd3fc; }
+.hljs-title, .hljs-title.function_, .hljs-section, .hljs-function .hljs-title { color: #5cc0ff; }
+.hljs-string, .hljs-char, .hljs-regexp, .hljs-template-variable { color: #8fd6a4; }
+.hljs-number, .hljs-literal, .hljs-symbol, .hljs-bullet { color: #f5b971; }
+.hljs-attr, .hljs-attribute, .hljs-property, .hljs-selector-attr { color: #79c0ff; }
+.hljs-variable, .hljs-params, .hljs-subst { color: #e6edf7; }
+.hljs-meta, .hljs-meta .hljs-keyword { color: #f0a3c8; }
+.hljs-meta .hljs-string { color: #8fd6a4; }
+.hljs-name, .hljs-tag, .hljs-selector-id, .hljs-selector-class, .hljs-selector-pseudo { color: #ff9e9e; }
+.hljs-section { font-weight: 600; }
+.hljs-addition { color: #8fd6a4; background: rgb(143 214 164 / 0.12); }
+.hljs-deletion { color: #ff9e9e; background: rgb(255 158 158 / 0.12); }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+.hljs-link { color: #7dd3fc; text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

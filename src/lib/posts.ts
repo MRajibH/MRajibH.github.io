@@ -8,6 +8,11 @@ import remarkRehype from "remark-rehype";
 import rehypeSlug from "rehype-slug";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
+import { common } from "lowlight";
+import dockerfile from "highlight.js/lib/languages/dockerfile";
+import http from "highlight.js/lib/languages/http";
+import nginx from "highlight.js/lib/languages/nginx";
+import { rehypeCodeBlocks } from "./code-blocks";
 import { topics, type Topic } from "./site";
 
 export type Art = {
@@ -121,7 +126,14 @@ export async function renderMarkdown(md: string): Promise<{ html: string; headin
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypeSlug)
-    .use(rehypeHighlight, { detect: false })
+    .use(rehypeHighlight, {
+      detect: false,
+      languages: { ...common, dockerfile, http, nginx },
+      aliases: { bash: ["sh", "zsh"], ini: ["toml"], typescript: ["ts"], javascript: ["js"] },
+      // No grammar exists for these; they are shown as plain text with a label.
+      plainText: ["text", "txt", "nft", "caddyfile"],
+    })
+    .use(rehypeCodeBlocks)
     .use(rehypeStringify)
     .process(md);
   const html = String(file)
